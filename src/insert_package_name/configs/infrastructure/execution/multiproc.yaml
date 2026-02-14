@@ -1,0 +1,10 @@
+# Best for CPU-bound tasks
+parallel:
+  threads:
+    enabled: false
+    max_workers: 1
+  processes:
+    enabled: true
+    # Logic: Use total CPU cores minus 1 (to keep the OS responsive)
+    # but never more than the number of domains we actually have
+    max_workers: ${min:${oc.dict.count:domains}, ${oc.env:CPU_COUNT, 4}}

@@ -1,0 +1,10 @@
+# Best for I/O bound tasks
+parallel:
+  threads:
+    enabled: true
+    # Logic: Use the smaller of (Number of Domains) or (Limit of 20)
+    # This prevents over-provisioning threads for small runs
+    max_workers: ${min:${oc.dict.count:domains}, 20}
+  processes:
+    enabled: false
+    max_workers: 1

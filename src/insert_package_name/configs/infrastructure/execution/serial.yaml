@@ -1,0 +1,4 @@
+# Use for debugging or simple runs
+parallel:
+  threads: {enabled: false, max_workers: 1}
+  processes: {enabled: false, max_workers: 1}

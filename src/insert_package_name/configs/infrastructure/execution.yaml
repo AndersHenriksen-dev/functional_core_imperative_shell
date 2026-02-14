@@ -1,0 +1,8 @@
+# Execution settings
+parallel:
+  threads:
+    enabled: false
+    max_workers: null
+  processes:
+    enabled: false
+    max_workers: null

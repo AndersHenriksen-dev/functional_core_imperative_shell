@@ -9,11 +9,15 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from insert_package_name.schema.types import (
     DomainConfig,
+    ExecutionConfig,
     FileFormat,
     GlobalConfig,
     IOConfig,
     LoggingConfig,
+    ParallelExecutionConfig,
+    ProcessExecutionConfig,
     ScheduleConfig,
+    ThreadExecutionConfig,
 )
 
 
@@ -193,6 +197,108 @@ class LoggingConfigModel(BaseModel):
         )
 
 
+class ThreadExecutionConfigModel(BaseModel):
+    """Pydantic model for thread execution settings."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    enabled: bool = False
+    max_workers: int | None = None
+
+    @model_validator(mode="after")
+    def validate_threads(self) -> "ThreadExecutionConfigModel":
+        """Validate thread execution settings."""
+        if self.max_workers is not None and self.max_workers < 1:
+            raise ValueError("threads.max_workers must be >= 1 when provided.")
+        return self
+
+    def to_dataclass(self) -> ThreadExecutionConfig:
+        """Convert the validated model to a dataclass.
+
+        Returns
+        -------
+        ThreadExecutionConfig
+            Dataclass representation.
+
+        """
+        return ThreadExecutionConfig(
+            enabled=self.enabled,
+            max_workers=self.max_workers,
+        )
+
+
+class ProcessExecutionConfigModel(BaseModel):
+    """Pydantic model for process execution settings."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    enabled: bool = False
+    max_workers: int | None = None
+
+    @model_validator(mode="after")
+    def validate_processes(self) -> "ProcessExecutionConfigModel":
+        """Validate process execution settings."""
+        if self.max_workers is not None and self.max_workers < 1:
+            raise ValueError("processes.max_workers must be >= 1 when provided.")
+        return self
+
+    def to_dataclass(self) -> ProcessExecutionConfig:
+        """Convert the validated model to a dataclass.
+
+        Returns
+        -------
+        ProcessExecutionConfig
+            Dataclass representation.
+
+        """
+        return ProcessExecutionConfig(
+            enabled=self.enabled,
+            max_workers=self.max_workers,
+        )
+
+
+class ParallelExecutionConfigModel(BaseModel):
+    """Pydantic model for parallel execution settings."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    threads: ThreadExecutionConfigModel = Field(default_factory=ThreadExecutionConfigModel)
+    processes: ProcessExecutionConfigModel = Field(default_factory=ProcessExecutionConfigModel)
+
+    def to_dataclass(self) -> ParallelExecutionConfig:
+        """Convert the validated model to a dataclass.
+
+        Returns
+        -------
+        ParallelExecutionConfig
+            Dataclass representation.
+
+        """
+        return ParallelExecutionConfig(
+            threads=self.threads.to_dataclass(),
+            processes=self.processes.to_dataclass(),
+        )
+
+
+class ExecutionConfigModel(BaseModel):
+    """Pydantic model for execution settings."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    parallel: ParallelExecutionConfigModel = Field(default_factory=ParallelExecutionConfigModel)
+
+    def to_dataclass(self) -> ExecutionConfig:
+        """Convert the validated model to a dataclass.
+
+        Returns
+        -------
+        ExecutionConfig
+            Dataclass representation.
+
+        """
+        return ExecutionConfig(parallel=self.parallel.to_dataclass())
+
+
 class GlobalConfigModel(BaseModel):
     """Pydantic model for top-level config validation."""
 
@@ -200,6 +306,7 @@ class GlobalConfigModel(BaseModel):
 
     env: str
     logging: LoggingConfigModel
+    execution: ExecutionConfigModel = Field(default_factory=ExecutionConfigModel)
     inputs: dict[str, IOConfigModel] = Field(default_factory=dict)
     active_domains: list[str] = Field(default_factory=list)
     active_tags: list[str] = Field(default_factory=list)
@@ -232,6 +339,7 @@ class GlobalConfigModel(BaseModel):
         return GlobalConfig(
             env=self.env,
             logging=self.logging.to_dataclass(),
+            execution=self.execution.to_dataclass(),
             inputs={key: value.to_dataclass() for key, value in self.inputs.items()},
             active_domains=list(self.active_domains),
             active_tags=list(self.active_tags),

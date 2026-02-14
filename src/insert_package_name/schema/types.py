@@ -68,11 +68,43 @@ class LoggingConfig:
 
 
 @dataclass(frozen=True)
+class ThreadExecutionConfig:
+    """Threaded execution configuration."""
+
+    enabled: bool = False
+    max_workers: int | None = None
+
+
+@dataclass(frozen=True)
+class ProcessExecutionConfig:
+    """Process execution configuration."""
+
+    enabled: bool = False
+    max_workers: int | None = None
+
+
+@dataclass(frozen=True)
+class ParallelExecutionConfig:
+    """Parallel execution configuration."""
+
+    threads: ThreadExecutionConfig = field(default_factory=ThreadExecutionConfig)
+    processes: ProcessExecutionConfig = field(default_factory=ProcessExecutionConfig)
+
+
+@dataclass(frozen=True)
+class ExecutionConfig:
+    """Execution configuration."""
+
+    parallel: ParallelExecutionConfig = field(default_factory=ParallelExecutionConfig)
+
+
+@dataclass(frozen=True)
 class GlobalConfig:
     """Top-level application configuration."""
 
     env: str
     logging: LoggingConfig
+    execution: ExecutionConfig = field(default_factory=ExecutionConfig)
     inputs: dict[str, IOConfig] = field(default_factory=dict)
     active_domains: list[str] = field(default_factory=list)
     active_tags: list[str] = field(default_factory=list)

@@ -1,5 +1,6 @@
 defaults:
   - infrastructure/logging@logging
+  - infrastructure/execution: serial  # Default to serial
   - inputs@inputs: common
   - domains:
       - example_domain

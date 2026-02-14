@@ -1,0 +1,10 @@
+# Best for large-scale runs with both CPU and I/O bottlenecks
+parallel:
+  processes:
+    enabled: true
+    # Use half of available CPUs to leave room for threads within each process
+    max_workers: ${min:${oc.dict.count:domains}, ${div_round:${oc.env:CPU_COUNT, 4}, 2}}
+  threads:
+    enabled: true
+    # Give each process a small pool of threads
+    max_workers: 4

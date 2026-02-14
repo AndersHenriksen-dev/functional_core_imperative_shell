@@ -3,6 +3,9 @@
 from __future__ import annotations
 
 import importlib
+import math
+import os
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 from collections.abc import Iterable
 
 from insert_package_name.core.errors import (
@@ -113,6 +116,50 @@ def run_domains(cfg: GlobalConfig) -> None:
         logger.info("Completed domain")
 
 
+def _execute_domain(domain_name: str, domain_cfg: DomainConfig) -> None:
+    """Execute a single domain with error isolation."""
+    logger = get_domain_logger("orchestrator", domain_name)
+
+    if not domain_cfg.enabled:
+        logger.info("Skipping domain (disabled)")
+        return
+
+    logger.info("Starting domain")
+    try:
+        runner = _load_domain_runner(domain_name)
+        runner(domain_cfg)
+        logger.info("Completed domain")
+    except (DomainNotFoundError, DomainInterfaceError) as exc:
+        logger.error(f"Domain setup error: {exc}")
+    except DataHandlingError as exc:
+        logger.error(f"Data handling error: {exc}", exc_info=True)
+    except Exception as exc:
+        logger.error(f"Unexpected error during domain execution: {exc}", exc_info=True)
+
+
+def _execute_domain_chunk(domain_items: list[tuple[str, DomainConfig]], thread_workers: int | None) -> None:
+    """Execute a chunk of domains. Uses threads if thread_workers > 1."""
+    if thread_workers and thread_workers > 1 and len(domain_items) > 1:
+        with ThreadPoolExecutor(max_workers=thread_workers, thread_name_prefix="domain") as executor:
+            for domain_name, domain_cfg in domain_items:
+                executor.submit(_execute_domain, domain_name, domain_cfg)
+    else:
+        for domain_name, domain_cfg in domain_items:
+            _execute_domain(domain_name, domain_cfg)
+
+
+def _chunk_domains(domain_items: list[tuple[str, DomainConfig]], max_chunks: int | None) -> list[list[tuple[str, DomainConfig]]]:
+    """Split domains into chunks for process workers."""
+    if not domain_items:
+        return []
+
+    if max_chunks is None:
+        max_chunks = os.cpu_count() or 1
+    max_chunks = max(1, max_chunks)
+    chunk_size = max(1, math.ceil(len(domain_items) / max_chunks))
+    return [domain_items[i : i + chunk_size] for i in range(0, len(domain_items), chunk_size)]
+
+
 def run_domains_safe(cfg: GlobalConfig, allowed_domains: set[str] | None = None) -> None:
     """Run selected domains with individual error isolation.
 
@@ -127,21 +174,24 @@ def run_domains_safe(cfg: GlobalConfig, allowed_domains: set[str] | None = None)
         If provided, only run domains in this set.
 
     """
-    for domain_name, domain_cfg in _iter_selected_domains(cfg, allowed_domains):
-        logger = get_domain_logger("orchestrator", domain_name)
+    selected = list(_iter_selected_domains(cfg, allowed_domains))
+    p_cfg = cfg.execution.parallel.processes
+    t_cfg = cfg.execution.parallel.threads
 
-        if not domain_cfg.enabled:
-            logger.info("Skipping domain (disabled)")
-            continue
+    # Single entry point for ProcessPool
+    if p_cfg.enabled and len(selected) > 1:
+        chunks = _chunk_domains(selected, p_cfg.max_workers)
+        with ProcessPoolExecutor(max_workers=p_cfg.max_workers) as executor:
+            for chunk in chunks:
+                executor.submit(_execute_domain_chunk, chunk, t_cfg.max_workers if t_cfg.enabled else None)
+    
+    # Threading only
+    elif t_cfg.enabled and len(selected) > 1:
+        with ThreadPoolExecutor(max_workers=t_cfg.max_workers) as executor:
+            for domain_name, domain_cfg in selected:
+                executor.submit(_execute_domain, domain_name, domain_cfg)
 
-        logger.info("Starting domain")
-        try:
-            runner = _load_domain_runner(domain_name)
-            runner(domain_cfg)
-            logger.info("Completed domain")
-        except (DomainNotFoundError, DomainInterfaceError) as exc:
-            logger.error(f"Domain setup error: {exc}")
-        except DataHandlingError as exc:
-            logger.error(f"Data handling error: {exc}", exc_info=True)
-        except Exception as exc:
-            logger.error(f"Unexpected error during domain execution: {exc}", exc_info=True)
+    # Fallback to Serial
+    else:
+        for domain_name, domain_cfg in selected:
+            _execute_domain(domain_name, domain_cfg)
