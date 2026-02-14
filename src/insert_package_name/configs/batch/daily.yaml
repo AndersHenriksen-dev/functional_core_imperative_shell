@@ -1,0 +1,7 @@
+# Daily batch run configuration
+# List of domain names to execute in the daily batch
+domains_to_run:
+  - example_domain
+
+# Override active_tags to target domains tagged as "daily"
+active_tags: ["daily"]

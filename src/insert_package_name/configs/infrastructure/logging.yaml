@@ -1,0 +1,4 @@
+level: INFO
+log_dir: ${hydra:runtime.cwd}/logs
+to_console: true
+to_file: true

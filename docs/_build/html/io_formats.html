@@ -1,0 +1,1125 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>IO Formats and Options Reference &#8212; data_handling  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=8a448e45"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'io_formats';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API Reference" href="api/index.html" />
+    <link rel="prev" title="Examples" href="examples.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">data_handling  documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="getting_started.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="user_guide.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    IO Formats and Options Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API Reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="api_style_guide.html">
+    API style guide
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="getting_started.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="user_guide.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    IO Formats and Options Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api_style_guide.html">
+    API style guide
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">IO Formats and Options Reference</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="io-formats-and-options-reference">
+<h1>IO Formats and Options Reference<a class="headerlink" href="#io-formats-and-options-reference" title="Link to this heading">#</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">data_handling</span></code> IO registry supports reading and writing data in multiple formats with configurable options. Format-specific settings are passed through the <code class="docutils literal notranslate"><span class="pre">options</span></code> dictionary in each IO config.</p>
+<section id="quick-reference">
+<h2>Quick reference<a class="headerlink" href="#quick-reference" title="Link to this heading">#</a></h2>
+<p>Each format is handled by a dedicated reader/writer pair that is automatically selected based on the <code class="docutils literal notranslate"><span class="pre">format</span></code> key in your config.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Format</p></th>
+<th class="head"><p>Reader</p></th>
+<th class="head"><p>Writer</p></th>
+<th class="head"><p>Path</p></th>
+<th class="head"><p>Common Options</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>csv</strong></p></td>
+<td><p>pandas.read_csv</p></td>
+<td><p>pandas.to_csv</p></td>
+<td><p>Local path or URI</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sep</span></code>, <code class="docutils literal notranslate"><span class="pre">encoding</span></code>, <code class="docutils literal notranslate"><span class="pre">index</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>parquet</strong></p></td>
+<td><p>pandas.read_parquet</p></td>
+<td><p>pandas.to_parquet</p></td>
+<td><p>Local path or URI</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">compression</span></code>, <code class="docutils literal notranslate"><span class="pre">index</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>json</strong></p></td>
+<td><p>pandas.read_json</p></td>
+<td><p>pandas.to_json</p></td>
+<td><p>Local path or URI</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">orient</span></code>, <code class="docutils literal notranslate"><span class="pre">indent</span></code>, <code class="docutils literal notranslate"><span class="pre">date_format</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>excel</strong></p></td>
+<td><p>pandas.read_excel</p></td>
+<td><p>pandas.to_excel</p></td>
+<td><p>Local path or URI</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sheet_name</span></code>, <code class="docutils literal notranslate"><span class="pre">engine</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>feather</strong></p></td>
+<td><p>pandas.read_feather</p></td>
+<td><p>pandas.to_feather</p></td>
+<td><p>Local path or URI</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">columns</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>orc</strong></p></td>
+<td><p>pandas.read_orc</p></td>
+<td><p>pandas.to_orc</p></td>
+<td><p>Local path or URI</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">engine</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>pickle</strong></p></td>
+<td><p>pandas.read_pickle</p></td>
+<td><p>pandas.to_pickle</p></td>
+<td><p>Local path or URI</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">compression</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>sql</strong></p></td>
+<td><p>pandas.read_sql_query / pandas.read_sql_table</p></td>
+<td><p>pandas.to_sql</p></td>
+<td><p>Database URI</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">query</span></code> (read), <code class="docutils literal notranslate"><span class="pre">table</span></code> (write), <code class="docutils literal notranslate"><span class="pre">if_exists</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>delta</strong></p></td>
+<td><p>deltalake.DeltaTable</p></td>
+<td><p>deltalake.write_deltalake</p></td>
+<td><p>Local path or URI</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>, <code class="docutils literal notranslate"><span class="pre">partition_by</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="csv-format">
+<h2>CSV format<a class="headerlink" href="#csv-format" title="Link to this heading">#</a></h2>
+<section id="read-csv-with-custom-delimiter">
+<h3>Read CSV with custom delimiter<a class="headerlink" href="#read-csv-with-custom-delimiter" title="Link to this heading">#</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domains</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">example_domain</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">inputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">customers</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/silver/customers.csv</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">csv</span>
+<span class="w">        </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">sep</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;;&quot;</span>
+<span class="w">          </span><span class="nt">encoding</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;utf-8&quot;</span>
+<span class="w">          </span><span class="nt">skipinitialspace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+<p><strong>Useful options:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sep</span></code>: Field delimiter (default: <code class="docutils literal notranslate"><span class="pre">,</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">encoding</span></code>: File encoding (default: <code class="docutils literal notranslate"><span class="pre">utf-8</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">header</span></code>: Row number for column names (default: <code class="docutils literal notranslate"><span class="pre">0</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">na_values</span></code>: Additional NA indicators (default: <code class="docutils literal notranslate"><span class="pre">[&quot;&quot;]</span></code>)</p></li>
+</ul>
+</section>
+<section id="write-csv-with-custom-options">
+<h3>Write CSV with custom options<a class="headerlink" href="#write-csv-with-custom-options" title="Link to this heading">#</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domains</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">example_domain</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">scores</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/gold/example_domain/scores.csv</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">csv</span>
+<span class="w">        </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">sep</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;;&quot;</span>
+<span class="w">          </span><span class="nt">index</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">          </span><span class="nt">quoting</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;all&quot;</span>
+</pre></div>
+</div>
+<p><strong>Useful options:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sep</span></code>: Field delimiter (default: <code class="docutils literal notranslate"><span class="pre">,</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">index</span></code>: Include row index (default: <code class="docutils literal notranslate"><span class="pre">false</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">quoting</span></code>: Quoting strategy (<code class="docutils literal notranslate"><span class="pre">minimal</span></code>, <code class="docutils literal notranslate"><span class="pre">all</span></code>, <code class="docutils literal notranslate"><span class="pre">nonnumeric</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">encoding</span></code>: File encoding (default: <code class="docutils literal notranslate"><span class="pre">utf-8</span></code>)</p></li>
+</ul>
+</section>
+</section>
+<section id="parquet-format">
+<h2>Parquet format<a class="headerlink" href="#parquet-format" title="Link to this heading">#</a></h2>
+<section id="read-parquet-with-columns-selection">
+<h3>Read Parquet with columns selection<a class="headerlink" href="#read-parquet-with-columns-selection" title="Link to this heading">#</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domains</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">example_domain</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">inputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">transactions</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/silver/transactions.parquet</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">parquet</span>
+<span class="w">        </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">columns</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;customer_id&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;amount&quot;</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p><strong>Useful options:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">columns</span></code>: List of columns to read</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">use_nullable_dtypes</span></code>: Use pandas nullable dtypes</p></li>
+</ul>
+</section>
+<section id="write-parquet-with-compression">
+<h3>Write Parquet with compression<a class="headerlink" href="#write-parquet-with-compression" title="Link to this heading">#</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domains</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">example_domain</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">scores</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/gold/example_domain/scores.parquet</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">parquet</span>
+<span class="w">        </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">compression</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;snappy&quot;</span>
+<span class="w">          </span><span class="nt">index</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</pre></div>
+</div>
+<p><strong>Useful options:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">compression</span></code>: <code class="docutils literal notranslate"><span class="pre">snappy</span></code>, <code class="docutils literal notranslate"><span class="pre">gzip</span></code>, <code class="docutils literal notranslate"><span class="pre">brotli</span></code>, or <code class="docutils literal notranslate"><span class="pre">lz4</span></code> (default: <code class="docutils literal notranslate"><span class="pre">snappy</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">index</span></code>: Include row index</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">coerce_timestamps</span></code>: Timestamp resolution (<code class="docutils literal notranslate"><span class="pre">ms</span></code>, <code class="docutils literal notranslate"><span class="pre">us</span></code>, <code class="docutils literal notranslate"><span class="pre">ns</span></code>)</p></li>
+</ul>
+</section>
+</section>
+<section id="json-format">
+<h2>JSON format<a class="headerlink" href="#json-format" title="Link to this heading">#</a></h2>
+<section id="read-json-in-different-orientations">
+<h3>Read JSON in different orientations<a class="headerlink" href="#read-json-in-different-orientations" title="Link to this heading">#</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domains</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">example_domain</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">inputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">customers</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/silver/customers.json</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">json</span>
+<span class="w">        </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">orient</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;records&quot;</span><span class="w">  </span><span class="c1"># or &#39;split&#39;, &#39;index&#39;, &#39;columns&#39;, &#39;values&#39;</span>
+<span class="w">          </span><span class="nt">dtype</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</pre></div>
+</div>
+<p><strong>Useful options:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">orient</span></code>: Data layout (<code class="docutils literal notranslate"><span class="pre">records</span></code>, <code class="docutils literal notranslate"><span class="pre">split</span></code>, <code class="docutils literal notranslate"><span class="pre">index</span></code>, <code class="docutils literal notranslate"><span class="pre">columns</span></code>, <code class="docutils literal notranslate"><span class="pre">values</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dtype</span></code>: Convert dtypes or use default inference</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lines</span></code>: Read newline-delimited JSON</p></li>
+</ul>
+</section>
+<section id="write-json-with-formatting">
+<h3>Write JSON with formatting<a class="headerlink" href="#write-json-with-formatting" title="Link to this heading">#</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domains</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">example_domain</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">scores</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/gold/example_domain/scores.json</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">json</span>
+<span class="w">        </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">orient</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;records&quot;</span>
+<span class="w">          </span><span class="nt">indent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">          </span><span class="nt">date_format</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;iso&quot;</span>
+</pre></div>
+</div>
+<p><strong>Useful options:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">orient</span></code>: Data layout (<code class="docutils literal notranslate"><span class="pre">records</span></code>, <code class="docutils literal notranslate"><span class="pre">split</span></code>, <code class="docutils literal notranslate"><span class="pre">index</span></code>, <code class="docutils literal notranslate"><span class="pre">columns</span></code>, <code class="docutils literal notranslate"><span class="pre">values</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">indent</span></code>: Indentation width (for readability)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">date_format</span></code>: <code class="docutils literal notranslate"><span class="pre">epoch</span></code> or <code class="docutils literal notranslate"><span class="pre">iso</span></code> for datetime conversion</p></li>
+</ul>
+</section>
+</section>
+<section id="sql-format">
+<h2>SQL format<a class="headerlink" href="#sql-format" title="Link to this heading">#</a></h2>
+<p>SQL reads and writes require a SQLAlchemy-compatible database URI and may need database driver installation (e.g., <code class="docutils literal notranslate"><span class="pre">psycopg2</span></code> for PostgreSQL).</p>
+<section id="read-from-sql-with-query">
+<h3>Read from SQL with query<a class="headerlink" href="#read-from-sql-with-query" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">query</span></code> option is <strong>required</strong> for SQL reads.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domains</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">example_domain</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">inputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">orders_recent</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;postgresql+psycopg://user:pass@localhost:5432/warehouse&quot;</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sql</span>
+<span class="w">        </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">            </span><span class="no">SELECT order_id, customer_id, amount, created_at</span>
+<span class="w">            </span><span class="no">FROM orders</span>
+<span class="w">            </span><span class="no">WHERE created_at &gt;= &#39;2024-01-01&#39;</span>
+<span class="w">            </span><span class="no">AND status = &#39;completed&#39;</span>
+<span class="w">          </span><span class="nt">chunksize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10000</span><span class="w">  </span><span class="c1"># Process in chunks</span>
+</pre></div>
+</div>
+<p><strong>Required options:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">query</span></code>: SQL query string (required)</p></li>
+</ul>
+<p><strong>Useful options:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">chunksize</span></code>: Row count per chunk (returns iterator)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">parse_dates</span></code>: Columns to parse as datetime</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dtype</span></code>: Explicit column types</p></li>
+</ul>
+</section>
+<section id="write-to-sql-table">
+<h3>Write to SQL table<a class="headerlink" href="#write-to-sql-table" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">table</span></code> option is <strong>required</strong> for SQL writes.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domains</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">example_domain</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">db_snapshot</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;postgresql+psycopg://user:pass@localhost:5432/warehouse&quot;</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sql</span>
+<span class="w">        </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">table</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;sales_snapshot&quot;</span>
+<span class="w">          </span><span class="nt">if_exists</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;replace&quot;</span>
+<span class="w">          </span><span class="nt">index</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">          </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;multi&quot;</span>
+</pre></div>
+</div>
+<p><strong>Required options:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">table</span></code>: Target table name (required)</p></li>
+</ul>
+<p><strong>Useful options:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">if_exists</span></code>: <code class="docutils literal notranslate"><span class="pre">fail</span></code> (default), <code class="docutils literal notranslate"><span class="pre">replace</span></code>, or <code class="docutils literal notranslate"><span class="pre">append</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">index</span></code>: Whether to write row index</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">method</span></code>: <code class="docutils literal notranslate"><span class="pre">None</span></code> (default), <code class="docutils literal notranslate"><span class="pre">multi</span></code>, or callable for insertion method</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chunksize</span></code>: Rows per batch insert</p></li>
+</ul>
+</section>
+</section>
+<section id="microsoft-sql-server-mssql">
+<h2>Microsoft SQL Server (MSSQL)<a class="headerlink" href="#microsoft-sql-server-mssql" title="Link to this heading">#</a></h2>
+<p>MSSQL connections require a database driver. Install <code class="docutils literal notranslate"><span class="pre">pyodbc</span></code> for better compatibility:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>add<span class="w"> </span>pyodbc
+</pre></div>
+</div>
+<section id="read-from-mssql-table">
+<h3>Read from MSSQL table<a class="headerlink" href="#read-from-mssql-table" title="Link to this heading">#</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domains</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">example_domain</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">inputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">customers</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mssql+pyodbc://sa:YourPassword@localhost/master?driver=ODBC+Driver+17+for+SQL+Server&quot;</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sql</span>
+<span class="w">        </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">table</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;dbo.customers&quot;</span>
+<span class="w">          </span><span class="nt">read_options</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">parse_dates</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;created_at&quot;</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+</section>
+<section id="read-from-mssql-with-query">
+<h3>Read from MSSQL with query<a class="headerlink" href="#read-from-mssql-with-query" title="Link to this heading">#</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domains</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">example_domain</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">inputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">recent_orders</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mssql+pyodbc://sa:YourPassword@SQLSERVER-HOST/warehouse?driver=ODBC+Driver+17+for+SQL+Server&quot;</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sql</span>
+<span class="w">        </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">            </span><span class="no">SELECT order_id, customer_id, amount, order_date</span>
+<span class="w">            </span><span class="no">FROM sales.orders</span>
+<span class="w">            </span><span class="no">WHERE YEAR(order_date) = YEAR(GETDATE())</span>
+</pre></div>
+</div>
+</section>
+<section id="write-to-mssql-table">
+<h3>Write to MSSQL table<a class="headerlink" href="#write-to-mssql-table" title="Link to this heading">#</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domains</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">example_domain</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">scores</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mssql+pyodbc://sa:YourPassword@localhost/warehouse?driver=ODBC+Driver+17+for+SQL+Server&quot;</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sql</span>
+<span class="w">        </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">table</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;dbo.customer_scores&quot;</span>
+<span class="w">          </span><span class="nt">if_exists</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;replace&quot;</span>
+<span class="w">          </span><span class="nt">write_options</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">method</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;multi&quot;</span>
+<span class="w">            </span><span class="nt">chunksize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+</pre></div>
+</div>
+<p><strong>Connection string formats:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mssql+pyodbc://user:password&#64;host/database?driver=ODBC+Driver+17+for+SQL+Server</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mssql+pyodbc://user:password&#64;localhost/database?driver=ODBC+Driver+17+for+SQL+Server</span></code> (local)</p></li>
+<li><p>Windows Auth: <code class="docutils literal notranslate"><span class="pre">mssql+pyodbc://user:password&#64;host/database?driver=ODBC+Driver+17+for+SQL+Server&amp;Trusted_Connection=yes</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="amazon-s3">
+<h2>Amazon S3<a class="headerlink" href="#amazon-s3" title="Link to this heading">#</a></h2>
+<p>Read and write CSV, Parquet, JSON, and other formats directly from S3 buckets using fsspec storage options.</p>
+<section id="read-csv-from-s3">
+<h3>Read CSV from S3<a class="headerlink" href="#read-csv-from-s3" title="Link to this heading">#</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domains</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">example_domain</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">inputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">customers</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;s3://my-bucket/silver/customers.csv&quot;</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">csv</span>
+<span class="w">        </span><span class="nt">storage_options</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">anon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">          </span><span class="nt">client_kwargs</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">region_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;us-east-1&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="read-parquet-from-s3-with-credentials">
+<h3>Read Parquet from S3 with credentials<a class="headerlink" href="#read-parquet-from-s3-with-credentials" title="Link to this heading">#</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domains</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">example_domain</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">inputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">transactions</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;s3://my-bucket/silver/transactions.parquet&quot;</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">parquet</span>
+<span class="w">        </span><span class="nt">storage_options</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;${oc.env:AWS_ACCESS_KEY_ID}&quot;</span>
+<span class="w">          </span><span class="nt">secret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;${oc.env:AWS_SECRET_ACCESS_KEY}&quot;</span>
+<span class="w">          </span><span class="nt">client_kwargs</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">region_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;us-west-2&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="write-to-s3">
+<h3>Write to S3<a class="headerlink" href="#write-to-s3" title="Link to this heading">#</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domains</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">example_domain</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">scores</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;s3://my-bucket/gold/example_domain/scores.csv&quot;</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">csv</span>
+<span class="w">        </span><span class="nt">storage_options</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">client_kwargs</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">region_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;us-east-1&quot;</span>
+<span class="w">        </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">sep</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;,&quot;</span>
+<span class="w">          </span><span class="nt">index</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</pre></div>
+</div>
+</section>
+<section id="s3-with-environment-variables">
+<h3>S3 with environment variables<a class="headerlink" href="#s3-with-environment-variables" title="Link to this heading">#</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domains</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">example_domain</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">inputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;${oc.env:DATA_PATH}&quot;</span><span class="w">  </span><span class="c1"># e.g., s3://bucket/path</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">parquet</span>
+<span class="w">        </span><span class="nt">storage_options</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;${oc.env:AWS_ACCESS_KEY_ID}&quot;</span>
+<span class="w">          </span><span class="nt">secret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;${oc.env:AWS_SECRET_ACCESS_KEY}&quot;</span>
+</pre></div>
+</div>
+<p><strong>Common S3 options:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">anon:</span> <span class="pre">true</span></code> - Anonymous access (public buckets)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">key:</span> <span class="pre">&quot;...&quot;</span></code> - AWS Access Key ID</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">secret:</span> <span class="pre">&quot;...&quot;</span></code> - AWS Secret Access Key</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">token:</span> <span class="pre">&quot;...&quot;</span></code> - Temporary session token</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">client_kwargs.region_name:</span> <span class="pre">&quot;us-east-1&quot;</span></code> - AWS region</p></li>
+</ul>
+</section>
+</section>
+<section id="databricks">
+<h2>Databricks<a class="headerlink" href="#databricks" title="Link to this heading">#</a></h2>
+<p>Databricks deployments can read/write from Unity Catalog tables using SQL or Delta format.</p>
+<section id="read-from-databricks-unity-catalog-sql">
+<h3>Read from Databricks Unity Catalog (SQL)<a class="headerlink" href="#read-from-databricks-unity-catalog-sql" title="Link to this heading">#</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domains</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">example_domain</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">inputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">customers</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;databricks:///?host=${oc.env:DATABRICKS_HOST}&amp;http_path=${oc.env:DATABRICKS_HTTP_PATH}&amp;token=${oc.env:DATABRICKS_TOKEN}&quot;</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sql</span>
+<span class="w">        </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SELECT</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">FROM</span><span class="nv"> </span><span class="s">main.silver.customers&quot;</span>
+<span class="w">          </span><span class="nt">read_options</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">parse_dates</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;created_at&quot;</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+</section>
+<section id="read-from-databricks-delta-lake">
+<h3>Read from Databricks Delta Lake<a class="headerlink" href="#read-from-databricks-delta-lake" title="Link to this heading">#</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domains</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">example_domain</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">inputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">transactions</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;dbfs:/mnt/silver/transactions&quot;</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">delta</span>
+</pre></div>
+</div>
+</section>
+<section id="write-to-databricks-sql-table">
+<h3>Write to Databricks SQL table<a class="headerlink" href="#write-to-databricks-sql-table" title="Link to this heading">#</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domains</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">example_domain</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">scores</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;databricks:///?host=${oc.env:DATABRICKS_HOST}&amp;http_path=${oc.env:DATABRICKS_HTTP_PATH}&amp;token=${oc.env:DATABRICKS_TOKEN}&quot;</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sql</span>
+<span class="w">        </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;INSERT</span><span class="nv"> </span><span class="s">INTO</span><span class="nv"> </span><span class="s">main.gold.customer_scores</span><span class="nv"> </span><span class="s">SELECT</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">FROM</span><span class="nv"> </span><span class="s">{{table}}&quot;</span>
+<span class="w">          </span><span class="nt">table</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;main.gold.customer_scores&quot;</span>
+<span class="w">          </span><span class="nt">if_exists</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;append&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="write-to-databricks-delta-lake-with-partitioning">
+<h3>Write to Databricks Delta Lake with partitioning<a class="headerlink" href="#write-to-databricks-delta-lake-with-partitioning" title="Link to this heading">#</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domains</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">example_domain</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">scores</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;s3://my-bucket/gold/scores&quot;</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">delta</span>
+<span class="w">        </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;overwrite&quot;</span>
+<span class="w">          </span><span class="nt">partition_by</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;year&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;month&quot;</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p><strong>Databricks connection notes:</strong></p>
+<ul class="simple">
+<li><p>Install <code class="docutils literal notranslate"><span class="pre">databricks-sql-connector</span></code>: <code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">add</span> <span class="pre">databricks-sql-connector</span></code></p></li>
+<li><p>Get credentials from Databricks workspace settings</p></li>
+<li><p>DBFS paths use <code class="docutils literal notranslate"><span class="pre">dbfs:/</span></code> prefix</p></li>
+<li><p>Volume paths use <code class="docutils literal notranslate"><span class="pre">dbfs:/Volumes/catalog/schema/volume/path</span></code></p></li>
+</ul>
+</section>
+<section id="environment-based-databricks-config">
+<h3>Environment-based Databricks config<a class="headerlink" href="#environment-based-databricks-config" title="Link to this heading">#</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># configs/infrastructure/databricks.yaml</span>
+<span class="nt">databricks</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${oc.env:DATABRICKS_HOST}</span>
+<span class="w">  </span><span class="nt">http_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${oc.env:DATABRICKS_HTTP_PATH}</span>
+<span class="w">  </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${oc.env:DATABRICKS_TOKEN}</span>
+</pre></div>
+</div>
+<p>Then reference in domain configs:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domains</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">example_domain</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">inputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;databricks:///?host=${databricks.host}&amp;http_path=${databricks.http_path}&amp;token=${databricks.token}&quot;</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sql</span>
+<span class="w">        </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SELECT</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">FROM</span><span class="nv"> </span><span class="s">main.silver.data&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="storage-options-and-fsspec">
+<h2>Storage options and fsspec<a class="headerlink" href="#storage-options-and-fsspec" title="Link to this heading">#</a></h2>
+<p>Pass <code class="docutils literal notranslate"><span class="pre">storage_options</span></code> for cloud storage backend paths (S3, GCS, Azure Blob Storage, etc.). These are passed directly to fsspec.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domains</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">example_domain</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">inputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">customers</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;s3://bucket/silver/customers.csv&quot;</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">csv</span>
+<span class="w">        </span><span class="nt">storage_options</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">anon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">          </span><span class="nt">client_kwargs</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">region_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;eu-west-1&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="examples-in-configuration">
+<h2>Examples in configuration<a class="headerlink" href="#examples-in-configuration" title="Link to this heading">#</a></h2>
+<section id="mixed-formats-in-one-pipeline">
+<h3>Mixed formats in one pipeline<a class="headerlink" href="#mixed-formats-in-one-pipeline" title="Link to this heading">#</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">domains</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">example_domain</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">inputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">customers</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/silver/customers.csv</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">csv</span>
+<span class="w">      </span><span class="nt">transactions</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/silver/transactions.parquet</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">parquet</span>
+<span class="w">      </span><span class="nt">orders_db</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;postgresql://user:pass@localhost/db&quot;</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sql</span>
+<span class="w">        </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SELECT</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">FROM</span><span class="nv"> </span><span class="s">orders</span><span class="nv"> </span><span class="s">WHERE</span><span class="nv"> </span><span class="s">status</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">&#39;active&#39;&quot;</span>
+<span class="w">    </span><span class="nt">outputs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">scores_csv</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/gold/example_domain/scores.csv</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">csv</span>
+<span class="w">        </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">sep</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;,&quot;</span>
+<span class="w">          </span><span class="nt">index</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">metrics_parquet</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/gold/example_domain/metrics.parquet</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">parquet</span>
+<span class="w">        </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">compression</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;snappy&quot;</span>
+<span class="w">      </span><span class="nt">scores_db</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;postgresql://user:pass@localhost/db&quot;</span>
+<span class="w">        </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sql</span>
+<span class="w">        </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">table</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;scores_report&quot;</span>
+<span class="w">          </span><span class="nt">if_exists</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;replace&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h2>
+<p><strong>CSV with NA region labels:</strong> By default, CSV reading treats “NA” as missing. To preserve it, use:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">catalogs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">regions</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">regions.csv</span>
+<span class="w">    </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">csv</span>
+<span class="w">    </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">keep_default_na</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">na_values</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;&quot;</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p><strong>SQL connection errors:</strong> Ensure the database driver is installed:</p>
+<ul class="simple">
+<li><p>PostgreSQL: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">psycopg2-binary</span></code></p></li>
+<li><p>MySQL: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pymysql</span></code></p></li>
+<li><p>MSSQL: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pyodbc</span></code></p></li>
+</ul>
+<p><strong>Memory on large parquet:</strong> To read large Parquet files in chunks, use:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">catalogs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">large_dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/large.parquet</span>
+<span class="w">    </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">parquet</span>
+<span class="w">    </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">columns</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;id&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;value&quot;</span><span class="p p-Indicator">]</span><span class="w">  </span><span class="c1"># Select fewer columns</span>
+</pre></div>
+</div>
+</section>
+<section id="see-also">
+<h2>See also<a class="headerlink" href="#see-also" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="user_guide.html#io-and-format-options"><span class="std std-ref">User Guide - IO and format options</span></a></p></li>
+<li><p><a class="reference internal" href="examples.html#format-options-examples"><span class="std std-ref">Examples - Format options examples</span></a></p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">pandas.read_csv documentation</a></p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_sql.html">pandas.to_sql documentation</a></p></li>
+<li><p><a class="reference external" href="https://docs.sqlalchemy.org/en/20/core/engines.html">SQLAlchemy connection strings</a></p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="examples.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Examples</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="api/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">API Reference</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-reference">Quick reference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#csv-format">CSV format</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-csv-with-custom-delimiter">Read CSV with custom delimiter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#write-csv-with-custom-options">Write CSV with custom options</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parquet-format">Parquet format</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-parquet-with-columns-selection">Read Parquet with columns selection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#write-parquet-with-compression">Write Parquet with compression</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#json-format">JSON format</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-json-in-different-orientations">Read JSON in different orientations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#write-json-with-formatting">Write JSON with formatting</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-format">SQL format</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-from-sql-with-query">Read from SQL with query</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#write-to-sql-table">Write to SQL table</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#microsoft-sql-server-mssql">Microsoft SQL Server (MSSQL)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-from-mssql-table">Read from MSSQL table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-from-mssql-with-query">Read from MSSQL with query</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#write-to-mssql-table">Write to MSSQL table</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amazon-s3">Amazon S3</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-csv-from-s3">Read CSV from S3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-parquet-from-s3-with-credentials">Read Parquet from S3 with credentials</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#write-to-s3">Write to S3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#s3-with-environment-variables">S3 with environment variables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#databricks">Databricks</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-from-databricks-unity-catalog-sql">Read from Databricks Unity Catalog (SQL)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#read-from-databricks-delta-lake">Read from Databricks Delta Lake</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#write-to-databricks-sql-table">Write to Databricks SQL table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#write-to-databricks-delta-lake-with-partitioning">Write to Databricks Delta Lake with partitioning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-based-databricks-config">Environment-based Databricks config</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-options-and-fsspec">Storage options and fsspec</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-in-configuration">Examples in configuration</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-formats-in-one-pipeline">Mixed formats in one pipeline</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#see-also">See also</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/io_formats.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, Anders Henriksen.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

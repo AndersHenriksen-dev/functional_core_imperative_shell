@@ -1,0 +1,2 @@
+- active_domains=[example_domain]
+- domains.example_domain.params.score_threshold=0.2

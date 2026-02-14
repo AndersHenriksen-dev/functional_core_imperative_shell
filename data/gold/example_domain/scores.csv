@@ -1,0 +1,5 @@
+customer_id,churn_probability,is_high_risk
+1,0.08946412352406896,False
+2,1.0,True
+3,0.0,False
+4,0.5458673932788374,False

@@ -1,0 +1,54 @@
+# Getting Started
+
+This page covers a quick setup and the shortest path to a successful run.
+
+## Install
+
+```bash
+uv sync
+```
+
+## Run the default pipeline
+
+The default configuration runs the example domain pipeline.
+
+```bash
+python -m data_handling.main
+```
+
+## Select domains or tags
+
+You can filter which domains run using the top-level config fields.
+
+```bash
+python -m data_handling.main active_domains=[example_domain]
+python -m data_handling.main active_tags=[daily]
+```
+
+## Override configuration values
+
+Override config values at runtime:
+
+```bash
+# Change an input path
+python -m data_handling.main domains.example_domain.inputs.customers.path="data/customers.csv"
+
+# Change an output path
+python -m data_handling.main domains.example_domain.outputs.scores.path="outputs/scores.csv"
+
+# Update a domain parameter
+python -m data_handling.main domains.example_domain.params.score_threshold=0.8
+```
+
+## Inspect the effective config
+
+If you are not sure which values are active, Hydra can render the full config:
+
+```bash
+python -m data_handling.main --cfg job
+```
+
+## Next steps
+
+- Read the [User Guide](user_guide.md) for architecture and extension points.
+- Use the [Examples](examples.md) page for copy-paste snippets.- See [Scheduling](scheduling.md) to run domains on automatic schedules (daily, weekly, monthly).

@@ -1,0 +1,38 @@
+# Data Handling
+
+```{toctree}
+:maxdepth: 2
+:caption: Contents
+
+getting_started
+user_guide
+configuration
+examples
+io_formats
+scheduling
+api/index
+api_style_guide
+```
+
+Build domain pipelines with explicit contracts, consistent IO, and repeatable runs. This site documents how the system works and how to extend it.
+
+## Start here
+
+- Read [Getting Started](getting_started.md) for the quickest setup.
+- Follow the [User Guide](user_guide.md) for architecture and configuration.
+- Copy recipes from [Examples](examples.md).
+- Browse the [API Reference](api/index) when you need details.
+
+## What this project solves
+
+- Centralize IO definitions and validation in one place.
+- Keep domain logic testable and isolated from orchestration.
+- Validate reads and writes with Pandera schemas.
+
+## How it is organized
+
+- **Domains** own business logic and export a `run` entry point.
+- **Contracts** define input and output expectations.
+- **IO** utilities read and persist data consistently.
+- **Configuration** is validated with Pydantic and composed by Hydra.
+- **Orchestration** wires everything together with `run_domains`.

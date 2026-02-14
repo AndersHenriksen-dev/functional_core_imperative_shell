@@ -1,0 +1,6 @@
+customers:
+  path: ${base_input_path}/customers.csv
+  format: csv
+transactions:
+  path: ${base_input_path}/transactions.csv
+  format: csv

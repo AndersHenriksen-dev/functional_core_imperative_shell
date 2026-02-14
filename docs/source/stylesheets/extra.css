@@ -1,0 +1,68 @@
+:root {
+  --md-primary-fg-color: #1f3a5f;
+  --md-accent-fg-color: #d04a34;
+  --md-default-bg-color: #f6f4ef;
+  --md-default-fg-color: #1c1b19;
+  --vp-section-max-width: 1200px;
+}
+
+.md-typeset {
+  font-size: 0.98rem;
+  line-height: 1.7;
+}
+
+.md-main__inner {
+  max-width: var(--vp-section-max-width);
+}
+
+.md-content__inner {
+  padding-bottom: 2.5rem;
+}
+
+.md-typeset h1 {
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.md-typeset h2 {
+  margin-top: 2.2rem;
+  font-weight: 650;
+}
+
+.md-typeset h3 {
+  font-weight: 600;
+}
+
+.md-typeset a {
+  text-decoration-thickness: 0.12em;
+  text-underline-offset: 0.18em;
+}
+
+.md-typeset code {
+  border-radius: 6px;
+  padding: 0.15em 0.35em;
+  background: rgba(31, 58, 95, 0.08);
+}
+
+.md-typeset pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.md-typeset pre {
+  border-radius: 12px;
+  background: #1c1b19;
+}
+
+.md-sidebar__scrollwrap {
+  padding-top: 0.75rem;
+}
+
+.md-sidebar__inner {
+  font-size: 0.95rem;
+}
+
+.md-typeset .admonition,
+.md-typeset details {
+  border-radius: 12px;
+}

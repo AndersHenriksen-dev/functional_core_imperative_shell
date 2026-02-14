@@ -1,0 +1,5 @@
+enabled: true
+interval: "monthly"
+day_of_month: 1
+hour: 2
+minute: 0

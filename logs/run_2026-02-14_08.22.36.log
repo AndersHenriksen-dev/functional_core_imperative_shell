@@ -1,0 +1,5 @@
+2026-02-14 08:22:36 INFO [-] insert_package_name.core.logging:96 - Logging to C:\Users\ander\Desktop\programming\group funding\functional_core_imperative_shell/logs\run_2026-02-14_08.22.36.log
+2026-02-14 08:22:36 INFO [-] orchestrator:27 - Starting orchestration
+2026-02-14 08:22:36 INFO [example_domain] orchestrator:96 - Starting domain
+2026-02-14 08:22:37 INFO [Example Domain] insert_package_name.domains.example_domain.pipeline:31 - Wrote 4 scores and 2 metrics
+2026-02-14 08:22:37 INFO [example_domain] orchestrator:105 - Completed domain

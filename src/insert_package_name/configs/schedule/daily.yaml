@@ -1,0 +1,4 @@
+enabled: true
+interval: "daily"
+hour: 2
+minute: 0

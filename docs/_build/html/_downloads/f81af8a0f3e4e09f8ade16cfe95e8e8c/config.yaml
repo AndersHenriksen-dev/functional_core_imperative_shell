@@ -1,0 +1,9 @@
+defaults:
+  - infrastructure/logging@logging
+  - domains:
+      - example_domain
+  - _self_
+
+env: dev
+active_domains: []
+active_tags: []

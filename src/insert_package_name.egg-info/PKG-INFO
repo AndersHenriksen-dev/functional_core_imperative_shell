@@ -1,0 +1,209 @@
+Metadata-Version: 2.4
+Name: insert_package_name
+Version: 0.0.1
+Summary: How do you make one function read and write all file formats to all locations?
+Author-email: Anders Henriksen <your@email.com>
+License: 
+        The MIT License (MIT)
+        Copyright (c) 2026, Anders Henriksen
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+        
+        
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.13
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: mkdocs-include-markdown-plugin
+Requires-Dist: mkdocstrings[python]
+Requires-Dist: invoke
+Requires-Dist: mkdocs
+Requires-Dist: mkdocs-material
+Requires-Dist: mkdocstrings
+Requires-Dist: mkdocstrings-python
+Requires-Dist: toc
+Requires-Dist: hydra-core
+Requires-Dist: pydantic>=2.5
+Requires-Dist: pandera>=0.20
+Requires-Dist: pandas>=2.2
+Requires-Dist: fsspec>=2024.10
+Requires-Dist: s3fs>=2024.10
+Requires-Dist: sqlalchemy>=2.0
+Requires-Dist: pyarrow>=16.0
+Requires-Dist: openpyxl>=3.1
+Requires-Dist: pyodbc>=5.3.0
+Requires-Dist: apscheduler>=3.10
+Dynamic: license-file
+
+# insert_package_name
+
+Data handling for domain-oriented pipelines with a single IO surface and explicit schemas.
+
+## Overview
+
+This package standardizes how data is read, validated, and written across domains. Configuration is driven by Hydra and validated with Pydantic, while Pandera schemas keep inputs and outputs explicit.
+
+## Features
+
+- Registry-based IO for CSV, Parquet, JSON, Excel, Feather, ORC, Pickle, SQL, and Delta.
+- Hydra configs for environments, domains, and logging.
+- Domain pipelines with clean separation between orchestration and business logic.
+- Pydantic validation for configuration with clear errors.
+- **Automatic domain scheduling**: Run pipelines daily, weekly, or monthly with APScheduler.
+
+## Installation
+
+1. Clone the repository:
+    ```bash
+    git clone <<repository_url>>
+    cd functional_core_imperative_shell
+    ```
+2. Install dependencies with `uv`:
+    ```bash
+    uv sync
+    ```
+3. Optional: install pre-commit hooks:
+    ```bash
+    pre-commit install --hook-type pre-commit --hook-type commit-msg
+    ```
+
+## Quickstart
+
+Run the default configuration (example domain):
+
+```bash
+python -m insert_package_name.main
+```
+
+The example config reads from [data/silver](data/silver) and writes to [data/gold](data/gold). Adjust paths in [configs/config.yaml](configs/config.yaml) or override via Hydra.
+
+### Hydra overrides
+
+Run a subset of domains or tags:
+
+```bash
+python -m insert_package_name.main active_domains=[example_domain]
+python -m insert_package_name.main active_tags=[daily]
+```
+
+Change IO paths at runtime:
+
+```bash
+python -m insert_package_name.main domains.example_domain.inputs.customers.path="data/customers.csv"
+```
+
+## Scheduling
+
+Configure domains to run automatically on a schedule:
+
+```yaml
+# configs/domains/example_domain.yaml
+example_domain:
+  schedule:
+    enabled: true
+    interval: "daily"  # daily, weekly, or monthly
+    hour: 2  # 2:00 AM
+    minute: 0
+```
+
+Start the scheduler:
+
+```bash
+python -m insert_package_name.scheduler_main
+```
+
+See [Scheduling Guide](docs/source/scheduling.md) for daily, weekly, monthly, and cron-based schedules.
+
+## Configuration model
+
+Hydra loads configs from [configs](configs):
+
+- [configs/config.yaml](configs/config.yaml): top-level defaults.
+- [configs/domains](configs/domains): per-domain inputs, outputs, and params.
+- [configs/infrastructure](configs/infrastructure): logging and infrastructure settings.
+
+Validated dataclasses live in `insert_package_name.schema.types` and are produced by `load_and_validate_config`.
+
+## IO formats
+
+Readers and writers are registered in [src/insert_package_name/core/io.py](src/insert_package_name/core/io.py). Each IO config requires:
+
+- `path`: local file path or URI.
+- `format`: one of `csv`, `parquet`, `json`, `excel`, `feather`, `orc`, `pickle`, `sql`, `delta`.
+- `options`: format-specific read/write options.
+- `storage_options`: fsspec storage options.
+
+Delta IO requires the `deltalake` optional dependency. SQL requires a SQLAlchemy-compatible URI and driver (for example `psycopg2` for Postgres).
+
+See [IO Formats Reference](docs/source/io_formats.md) for a complete guide with examples for:
+- **Cloud storage**: S3, Azure Blob Storage, Google Cloud Storage
+- **Databases**: PostgreSQL, MySQL, Microsoft SQL Server
+- **Data lakes**: Databricks, Delta Lake
+- **Formats**: CSV, Parquet, JSON, Excel, SQL, and more
+
+## Cloud deployment
+
+### Databricks
+
+Run on Databricks clusters with Unity Catalog tables:
+
+```yaml
+# configs/domains/example_domain.yaml
+example_domain:
+  inputs:
+    customers:
+      path: "databricks:///?host=${oc.env:DATABRICKS_HOST}&http_path=${oc.env:DATABRICKS_HTTP_PATH}&token=${oc.env:DATABRICKS_TOKEN}"
+      format: sql
+      options:
+        query: "SELECT * FROM main.silver.customers"
+```
+
+### AWS S3
+
+Read from and write to S3 buckets:
+
+```yaml
+example_domain:
+  inputs:
+    data:
+      path: "s3://my-bucket/silver/data.parquet"
+      format: parquet
+      storage_options:
+        client_kwargs:
+          region_name: "us-east-1"
+```
+
+### Microsoft SQL Server
+
+Connect to MSSQL databases (requires `pyodbc`):
+
+```bash
+uv add pyodbc
+```
+
+```yaml
+example_domain:
+  inputs:
+    orders:
+      path: "mssql+pyodbc://user:pass@server/db?driver=ODBC+Driver+17+for+SQL+Server"
+      format: sql
+      options:
+        table: "dbo.orders"
+```
+
+## Development
+
+Run tests:
+
+```bash
+python -m pytest -q
+```
+
+## License
+
+See [LICENSE](LICENSE).

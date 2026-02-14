@@ -1,0 +1,18 @@
+defaults:
+  - infrastructure/logging@logging
+  - inputs@inputs: common
+  - domains:
+      - example_domain
+  - _self_
+
+env: dev
+active_domains: []
+active_tags: []
+
+# Optional: explicit list of domains to load (for safe-loading pattern)
+# If not specified, all domains from defaults will be loaded
+domains_to_run: []
+
+# Base paths for all input/output files
+base_input_path: ${hydra:runtime.cwd}/data/silver
+base_output_path: ${hydra:runtime.cwd}/data/gold

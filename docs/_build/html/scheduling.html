@@ -1,0 +1,711 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Scheduling Domain Pipelines &#8212; data_handling  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=8a448e45"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'scheduling';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">data_handling  documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="getting_started.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="user_guide.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="io_formats.html">
+    IO Formats and Options Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API Reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="api_style_guide.html">
+    API style guide
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="getting_started.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="user_guide.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="io_formats.html">
+    IO Formats and Options Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api_style_guide.html">
+    API style guide
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Scheduling Domain Pipelines</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="scheduling-domain-pipelines">
+<h1>Scheduling Domain Pipelines<a class="headerlink" href="#scheduling-domain-pipelines" title="Link to this heading">#</a></h1>
+<p>This guide explains how to automatically schedule domain pipelines to run on a fixed schedule (daily, weekly, monthly).</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>The scheduler uses APScheduler to execute domains on specified schedules. Each domain can be configured with:</p>
+<ul class="simple">
+<li><p><strong>Interval</strong>: “daily”, “weekly”, or “monthly”</p></li>
+<li><p><strong>Time</strong>: hour (0-23) and minute (0-59)</p></li>
+<li><p><strong>Day</strong> (for weekly/monthly): day of week or day of month</p></li>
+<li><p><strong>Cron expression</strong> (optional): explicit cron syntax for complex schedules</p></li>
+</ul>
+</section>
+<section id="basic-configuration">
+<h2>Basic configuration<a class="headerlink" href="#basic-configuration" title="Link to this heading">#</a></h2>
+<p>Enable scheduling in a domain config file:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># configs/domains/example_domain.yaml</span>
+<span class="nt">example_domain</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Example</span><span class="nv"> </span><span class="s">Domain&quot;</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">schedule</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">  </span><span class="c1"># Enable scheduling</span>
+<span class="w">    </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;daily&quot;</span>
+<span class="w">    </span><span class="nt">hour</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span><span class="w">  </span><span class="c1"># Run at 2:00 AM</span>
+<span class="w">    </span><span class="nt">minute</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">  </span><span class="nt">inputs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="nv">...</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">  </span><span class="nt">outputs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="nv">...</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</pre></div>
+</div>
+</section>
+<section id="daily-schedules">
+<h2>Daily schedules<a class="headerlink" href="#daily-schedules" title="Link to this heading">#</a></h2>
+<p>Run every day at a specified time:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">schedule</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;daily&quot;</span>
+<span class="w">  </span><span class="nt">hour</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">14</span><span class="w">  </span><span class="c1"># 2:00 PM</span>
+<span class="w">  </span><span class="nt">minute</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span>
+</pre></div>
+</div>
+<p>This runs the domain at 2:30 PM every day.</p>
+</section>
+<section id="weekly-schedules">
+<h2>Weekly schedules<a class="headerlink" href="#weekly-schedules" title="Link to this heading">#</a></h2>
+<p>Run once per week on a specified day and time:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">schedule</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;weekly&quot;</span>
+<span class="w">  </span><span class="nt">day_of_week</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;monday&quot;</span><span class="w">  </span><span class="c1"># Or &quot;tuesday&quot;, &quot;wednesday&quot;, ... &quot;sunday&quot;</span>
+<span class="w">  </span><span class="nt">hour</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9</span>
+<span class="w">  </span><span class="nt">minute</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</pre></div>
+</div>
+<p>This runs the domain every Monday at 9:00 AM.</p>
+<p>Available days: <code class="docutils literal notranslate"><span class="pre">monday</span></code>, <code class="docutils literal notranslate"><span class="pre">tuesday</span></code>, <code class="docutils literal notranslate"><span class="pre">wednesday</span></code>, <code class="docutils literal notranslate"><span class="pre">thursday</span></code>, <code class="docutils literal notranslate"><span class="pre">friday</span></code>, <code class="docutils literal notranslate"><span class="pre">saturday</span></code>, <code class="docutils literal notranslate"><span class="pre">sunday</span></code>.</p>
+</section>
+<section id="monthly-schedules">
+<h2>Monthly schedules<a class="headerlink" href="#monthly-schedules" title="Link to this heading">#</a></h2>
+<p>Run once per month on a specified day and time:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">schedule</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;monthly&quot;</span>
+<span class="w">  </span><span class="nt">day_of_month</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15</span><span class="w">  </span><span class="c1"># Run on the 15th of each month</span>
+<span class="w">  </span><span class="nt">hour</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span><span class="w">  </span><span class="c1"># 3:00 AM</span>
+<span class="w">  </span><span class="nt">minute</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</pre></div>
+</div>
+<p>This runs the domain on the 15th of every month at 3:00 AM.</p>
+</section>
+<section id="cron-expressions-advanced">
+<h2>Cron expressions (advanced)<a class="headerlink" href="#cron-expressions-advanced" title="Link to this heading">#</a></h2>
+<p>For complex schedules, use cron expressions directly:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">schedule</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">cron</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0</span><span class="nv"> </span><span class="s">2</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*&quot;</span><span class="w">  </span><span class="c1"># 2:00 AM every day</span>
+</pre></div>
+</div>
+<section id="common-cron-patterns">
+<h3>Common cron patterns<a class="headerlink" href="#common-cron-patterns" title="Link to this heading">#</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Every day at 2:00 AM</span>
+<span class="nt">cron</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0</span><span class="nv"> </span><span class="s">2</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*&quot;</span>
+
+<span class="c1"># Every weekday (Monday-Friday) at 9:00 AM</span>
+<span class="nt">cron</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0</span><span class="nv"> </span><span class="s">9</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">1-5&quot;</span>
+
+<span class="c1"># First and 15th of each month at 3:00 AM</span>
+<span class="nt">cron</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0</span><span class="nv"> </span><span class="s">3</span><span class="nv"> </span><span class="s">1,15</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*&quot;</span>
+
+<span class="c1"># Every 6 hours</span>
+<span class="nt">cron</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0</span><span class="nv"> </span><span class="s">*/6</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*&quot;</span>
+
+<span class="c1"># Every Sunday at midnight</span>
+<span class="nt">cron</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0</span><span class="nv"> </span><span class="s">0</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">0&quot;</span>
+
+<span class="c1"># Every weekday at 8:30 AM and 5:30 PM</span>
+<span class="nt">cron</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;30</span><span class="nv"> </span><span class="s">8,17</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">1-5&quot;</span>
+</pre></div>
+</div>
+<p>Cron format: <code class="docutils literal notranslate"><span class="pre">minute</span> <span class="pre">hour</span> <span class="pre">day</span> <span class="pre">month</span> <span class="pre">day_of_week</span></code></p>
+</section>
+</section>
+<section id="running-the-scheduler">
+<h2>Running the scheduler<a class="headerlink" href="#running-the-scheduler" title="Link to this heading">#</a></h2>
+<p>Start the scheduler process:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>data_handling.scheduler_main
+</pre></div>
+</div>
+<p>The scheduler will:</p>
+<ol class="arabic simple">
+<li><p>Load the global configuration</p></li>
+<li><p>Identify all domains with <code class="docutils literal notranslate"><span class="pre">schedule.enabled:</span> <span class="pre">true</span></code></p></li>
+<li><p>Start a background scheduler with all configured jobs</p></li>
+<li><p>Keep running and execute domains on their schedule</p></li>
+</ol>
+<p>Press <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code> to stop.</p>
+</section>
+<section id="multiple-scheduled-domains">
+<h2>Multiple scheduled domains<a class="headerlink" href="#multiple-scheduled-domains" title="Link to this heading">#</a></h2>
+<p>You can have multiple domains on different schedules:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># configs/domains/daily_etl.yaml</span>
+<span class="nt">daily_etl</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">schedule</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;daily&quot;</span>
+<span class="w">    </span><span class="nt">hour</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">minute</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">  </span><span class="nt">inputs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="nv">...</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">  </span><span class="nt">outputs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="nv">...</span><span class="w"> </span><span class="p p-Indicator">}</span>
+
+<span class="c1"># configs/domains/monthly_summary.yaml</span>
+<span class="nt">monthly_summary</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">schedule</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;monthly&quot;</span>
+<span class="w">    </span><span class="nt">day_of_month</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">hour</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
+<span class="w">    </span><span class="nt">minute</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">  </span><span class="nt">inputs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="nv">...</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">  </span><span class="nt">outputs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="nv">...</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</pre></div>
+</div>
+<p>When you run the scheduler:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>data_handling.scheduler_main
+</pre></div>
+</div>
+<p>Both domains will execute on their respective schedules.</p>
+</section>
+<section id="docker-deployment">
+<h2>Docker deployment<a class="headerlink" href="#docker-deployment" title="Link to this heading">#</a></h2>
+<p>To run scheduled pipelines in Docker, build the wheel and create a container:</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.13-slim</span>
+
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<span class="k">COPY</span><span class="w"> </span>dist/data_handling*.whl<span class="w"> </span>.
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>data_handling*.whl
+
+<span class="c"># Run as a scheduled service</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-m&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;data_handling.scheduler_main&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Build and run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>build
+docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>data-handler-scheduler<span class="w"> </span>.
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>data-handler-scheduler
+</pre></div>
+</div>
+</section>
+<section id="cloud-scheduling-alternative">
+<h2>Cloud scheduling (alternative)<a class="headerlink" href="#cloud-scheduling-alternative" title="Link to this heading">#</a></h2>
+<p>For cloud platforms, you can instead:</p>
+<ol class="arabic simple">
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">data_handling.main</span> <span class="pre">active_domains=[domain_name]</span></code> via:</p>
+<ul class="simple">
+<li><p><strong>Databricks</strong>: Jobs scheduler</p></li>
+<li><p><strong>AWS</strong>: Lambda + EventBridge, or Step Functions</p></li>
+<li><p><strong>GitHub Actions</strong>: Scheduled workflows</p></li>
+<li><p><strong>Airflow</strong>: Managed DAGs</p></li>
+</ul>
+</li>
+</ol>
+<p>This gives you more control and monitoring in the cloud platform’s native scheduler.</p>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h2>
+<section id="domain-doesn-t-run">
+<h3>Domain doesn’t run<a class="headerlink" href="#domain-doesn-t-run" title="Link to this heading">#</a></h3>
+<p>Check that:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">schedule.enabled:</span> <span class="pre">true</span></code> is set in the domain config</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">interval</span></code> is one of: “daily”, “weekly”, “monthly” (or <code class="docutils literal notranslate"><span class="pre">cron</span></code> is valid)</p></li>
+<li><p>If using <code class="docutils literal notranslate"><span class="pre">interval</span></code> without <code class="docutils literal notranslate"><span class="pre">cron</span></code>, ensure <code class="docutils literal notranslate"><span class="pre">hour</span></code> and <code class="docutils literal notranslate"><span class="pre">minute</span></code> are 0-23 and 0-59</p></li>
+<li><p>Domain has <code class="docutils literal notranslate"><span class="pre">enabled:</span> <span class="pre">true</span></code></p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">data_handling.scheduler_main</span></code> (scheduler must be running)</p></li>
+</ol>
+</section>
+<section id="check-scheduled-jobs">
+<h3>Check scheduled jobs<a class="headerlink" href="#check-scheduled-jobs" title="Link to this heading">#</a></h3>
+<p>The scheduler logs on startup which jobs were registered:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Scheduled</span> <span class="n">domain</span> <span class="s1">&#39;daily_etl&#39;</span> <span class="k">with</span> <span class="n">trigger</span><span class="p">:</span> <span class="n">cron</span><span class="p">[</span><span class="n">minute</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="n">hour</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">day_of_week</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">second</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">]</span>
+<span class="n">Scheduled</span> <span class="n">domain</span> <span class="s1">&#39;monthly_summary&#39;</span> <span class="k">with</span> <span class="n">trigger</span><span class="p">:</span> <span class="n">cron</span><span class="p">[</span><span class="n">minute</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="n">hour</span><span class="o">=</span><span class="s1">&#39;4&#39;</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">day_of_week</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">second</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">]</span>
+<span class="n">Scheduler</span> <span class="n">started</span> <span class="k">with</span> <span class="mi">2</span> <span class="n">scheduled</span> <span class="n">domain</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="time-zone-issues">
+<h3>Time zone issues<a class="headerlink" href="#time-zone-issues" title="Link to this heading">#</a></h3>
+<p>The scheduler uses the system’s local timezone. To use UTC:</p>
+<p>Edit <code class="docutils literal notranslate"><span class="pre">scheduler_main.py</span></code> and set the scheduler timezone:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pytz</span><span class="w"> </span><span class="kn">import</span> <span class="n">UTC</span>
+
+<span class="n">scheduler</span> <span class="o">=</span> <span class="n">BackgroundScheduler</span><span class="p">(</span><span class="n">timezone</span><span class="o">=</span><span class="n">UTC</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="see-also">
+<h2>See also<a class="headerlink" href="#see-also" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://hydra.cc/">Hydra configuration documentation</a></p></li>
+<li><p><a class="reference external" href="https://apscheduler.readthedocs.io/">APScheduler documentation</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Cron">Cron expression reference</a></p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-configuration">Basic configuration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#daily-schedules">Daily schedules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weekly-schedules">Weekly schedules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monthly-schedules">Monthly schedules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cron-expressions-advanced">Cron expressions (advanced)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-cron-patterns">Common cron patterns</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-scheduler">Running the scheduler</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-scheduled-domains">Multiple scheduled domains</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-deployment">Docker deployment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-scheduling-alternative">Cloud scheduling (alternative)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-doesn-t-run">Domain doesn’t run</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-scheduled-jobs">Check scheduled jobs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#time-zone-issues">Time zone issues</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#see-also">See also</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/scheduling.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, Anders Henriksen.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

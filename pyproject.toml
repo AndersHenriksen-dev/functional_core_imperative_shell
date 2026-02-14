@@ -1,0 +1,121 @@
+[project]
+name = "insert_package_name"
+version = "0.0.1"
+description = "How do you make one function read and write all file formats to all locations?"
+authors = [
+  { name = "Anders Henriksen", email = "your@email.com" },
+]
+license = { file = "LICENSE" }
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Programming Language :: Python :: 3",
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "mkdocs-include-markdown-plugin",
+    "mkdocstrings[python]",
+    "invoke",
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocstrings",
+    "mkdocstrings-python",
+    "toc",
+    "hydra-core",
+    "pydantic>=2.5",
+    "pandera>=0.20",
+    "pandas>=2.2",
+    "fsspec>=2024.10",
+    "s3fs>=2024.10",
+    "sqlalchemy>=2.0",
+    "pyarrow>=16.0",
+    "openpyxl>=3.1",
+    "pyodbc>=5.3.0",
+    "apscheduler>=3.10",
+]
+[dependency-groups]
+dev = [
+    "coverage",
+    "pytest",
+    "ruff",
+    "mypy",
+    "bandit",
+    "safety",
+    "setuptools",
+    "wheel",
+    "pre-commit",
+  "sphinx",
+  "numpydoc",
+  "myst-parser",
+  "pydata-sphinx-theme",
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]  # <--- CRITICAL: Tells setuptools to look inside src/
+include = ["insert_package_name", "insert_package_name.*"]
+namespaces = false
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-data]
+insert_package_name = ["configs/**/*.yaml"]
+
+[tool.coverage.run]
+omit = ["tests/*"]
+
+# Ruff configuration: linting and code style
+[tool.ruff]
+line-length = 120        # Maximum line length
+target-version = "py313" # Target Python version
+
+# Linting rules selection
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "N",    # pep8-naming
+    "PERF", # performance
+    "I",    # isort (import sorting)
+    "UP",   # pyupgrade (modernize syntax)
+    "B",    # flake8-bugbear (common bugs)
+    "C4",   # flake8-comprehensions
+    "SIM",  # flake8-simplify
+    "RUF",  # Ruff-specific rules
+    "D",    # pydocstyle (docstring conventions)
+    "DOC",  # docstring rules
+    "S",    # flake8-string-format (string formatting issues)
+]
+
+# Rules to ignore (customize as needed)
+ignore = [
+]
+
+# Ruff formatting configuration: code style preferences
+[tool.ruff.format]
+quote-style = "double"            # Use double quotes for strings
+indent-style = "space"            # Use spaces for indentation
+skip-magic-trailing-comma = false # Respect magic trailing commas
+line-ending = "auto"              # Automatically detect line endings
+
+# Import sorting configuration (isort replacement)
+[tool.ruff.lint.isort]
+force-single-line = false      # Allow multiple imports per line
+split-on-trailing-comma = true # Split imports on trailing comma
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["D103", "S101", "S603", "S108"]
+
+# Mypy configuration: type checking
+[tool.mypy]
+python_version = "3.13" # Target Python version
+strict = true           # Enable all strict type checking options
+
+# Import handling
+ignore_missing_imports = true # Avoid errors for pandas and similar libraries
+follow_imports = "normal"     # Follow imports for type checking

@@ -1,0 +1,18 @@
+defaults:
+  - /schedule@example_domain.schedule: disabled  # Could be set to daily
+  - _self_
+
+example_domain:
+  name: "Example Domain"
+  enabled: true
+  tags: ["daily"]
+  inputs: [customers, transactions]
+  params:
+    score_threshold: 0.7
+  outputs:
+    scores:
+      path: ${base_output_path}/example_domain/scores.csv
+      format: csv
+    metrics:
+      path: ${base_output_path}/example_domain/metrics.csv
+      format: csv

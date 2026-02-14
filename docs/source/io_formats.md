@@ -1,0 +1,517 @@
+# IO Formats and Options Reference
+
+The `insert_package_name` IO registry supports reading and writing data in multiple formats with configurable options. Format-specific settings are passed through the `options` dictionary in each IO config.
+
+## Quick reference
+
+Each format is handled by a dedicated reader/writer pair that is automatically selected based on the `format` key in your config.
+
+| Format | Reader | Writer | Path | Common Options |
+|--------|--------|--------|------|-----------------|
+| **csv** | pandas.read_csv | pandas.to_csv | Local path or URI | `sep`, `encoding`, `index` |
+| **parquet** | pandas.read_parquet | pandas.to_parquet | Local path or URI | `compression`, `index` |
+| **json** | pandas.read_json | pandas.to_json | Local path or URI | `orient`, `indent`, `date_format` |
+| **excel** | pandas.read_excel | pandas.to_excel | Local path or URI | `sheet_name`, `engine` |
+| **feather** | pandas.read_feather | pandas.to_feather | Local path or URI | `columns` |
+| **orc** | pandas.read_orc | pandas.to_orc | Local path or URI | `engine` |
+| **pickle** | pandas.read_pickle | pandas.to_pickle | Local path or URI | `compression` |
+| **sql** | pandas.read_sql_query / pandas.read_sql_table | pandas.to_sql | Database URI | `query` (read), `table` (write), `if_exists` |
+| **delta** | deltalake.DeltaTable | deltalake.write_deltalake | Local path or URI | `mode`, `partition_by` |
+
+## CSV format
+
+### Read CSV with custom delimiter
+
+```yaml
+domains:
+  example_domain:
+    inputs:
+      customers:
+        path: data/silver/customers.csv
+        format: csv
+        options:
+          sep: ";"
+          encoding: "utf-8"
+          skipinitialspace: true
+```
+
+**Useful options:**
+- `sep`: Field delimiter (default: `,`)
+- `encoding`: File encoding (default: `utf-8`)
+- `header`: Row number for column names (default: `0`)
+- `na_values`: Additional NA indicators (default: `[""]`)
+
+### Write CSV with custom options
+
+```yaml
+domains:
+  example_domain:
+    outputs:
+      scores:
+        path: data/gold/example_domain/scores.csv
+        format: csv
+        options:
+          sep: ";"
+          index: false
+          quoting: "all"
+```
+
+**Useful options:**
+- `sep`: Field delimiter (default: `,`)
+- `index`: Include row index (default: `false`)
+- `quoting`: Quoting strategy (`minimal`, `all`, `nonnumeric`)
+- `encoding`: File encoding (default: `utf-8`)
+
+## Parquet format
+
+### Read Parquet with columns selection
+
+```yaml
+domains:
+  example_domain:
+    inputs:
+      transactions:
+        path: data/silver/transactions.parquet
+        format: parquet
+        options:
+          columns: ["customer_id", "amount"]
+```
+
+**Useful options:**
+- `columns`: List of columns to read
+- `use_nullable_dtypes`: Use pandas nullable dtypes
+
+### Write Parquet with compression
+
+```yaml
+domains:
+  example_domain:
+    outputs:
+      scores:
+        path: data/gold/example_domain/scores.parquet
+        format: parquet
+        options:
+          compression: "snappy"
+          index: false
+```
+
+**Useful options:**
+- `compression`: `snappy`, `gzip`, `brotli`, or `lz4` (default: `snappy`)
+- `index`: Include row index
+- `coerce_timestamps`: Timestamp resolution (`ms`, `us`, `ns`)
+
+## JSON format
+
+### Read JSON in different orientations
+
+```yaml
+domains:
+  example_domain:
+    inputs:
+      customers:
+        path: data/silver/customers.json
+        format: json
+        options:
+          orient: "records"  # or 'split', 'index', 'columns', 'values'
+          dtype: false
+```
+
+**Useful options:**
+- `orient`: Data layout (`records`, `split`, `index`, `columns`, `values`)
+- `dtype`: Convert dtypes or use default inference
+- `lines`: Read newline-delimited JSON
+
+### Write JSON with formatting
+
+```yaml
+domains:
+  example_domain:
+    outputs:
+      scores:
+        path: data/gold/example_domain/scores.json
+        format: json
+        options:
+          orient: "records"
+          indent: 2
+          date_format: "iso"
+```
+
+**Useful options:**
+- `orient`: Data layout (`records`, `split`, `index`, `columns`, `values`)
+- `indent`: Indentation width (for readability)
+- `date_format`: `epoch` or `iso` for datetime conversion
+
+## SQL format
+
+SQL reads and writes require a SQLAlchemy-compatible database URI and may need database driver installation (e.g., `psycopg2` for PostgreSQL).
+
+### Read from SQL with query
+
+The `query` option is **required** for SQL reads.
+
+```yaml
+domains:
+  example_domain:
+    inputs:
+      orders_recent:
+        path: "postgresql+psycopg://user:pass@localhost:5432/warehouse"
+        format: sql
+        options:
+          query: |
+            SELECT order_id, customer_id, amount, created_at
+            FROM orders
+            WHERE created_at >= '2024-01-01'
+            AND status = 'completed'
+          chunksize: 10000  # Process in chunks
+```
+
+**Required options:**
+- `query`: SQL query string (required)
+
+**Useful options:**
+- `chunksize`: Row count per chunk (returns iterator)
+- `parse_dates`: Columns to parse as datetime
+- `dtype`: Explicit column types
+
+### Write to SQL table
+
+The `table` option is **required** for SQL writes.
+
+```yaml
+domains:
+  example_domain:
+    outputs:
+      db_snapshot:
+        path: "postgresql+psycopg://user:pass@localhost:5432/warehouse"
+        format: sql
+        options:
+          table: "sales_snapshot"
+          if_exists: "replace"
+          index: false
+          method: "multi"
+```
+
+**Required options:**
+- `table`: Target table name (required)
+
+**Useful options:**
+- `if_exists`: `fail` (default), `replace`, or `append`
+- `index`: Whether to write row index
+- `method`: `None` (default), `multi`, or callable for insertion method
+- `chunksize`: Rows per batch insert
+
+## Microsoft SQL Server (MSSQL)
+
+MSSQL connections require a database driver. Install `pyodbc` for better compatibility:
+
+```bash
+uv add pyodbc
+```
+
+### Read from MSSQL table
+
+```yaml
+domains:
+  example_domain:
+    inputs:
+      customers:
+        path: "mssql+pyodbc://sa:YourPassword@localhost/master?driver=ODBC+Driver+17+for+SQL+Server"
+        format: sql
+        options:
+          table: "dbo.customers"
+          read_options:
+            parse_dates: ["created_at"]
+```
+
+### Read from MSSQL with query
+
+```yaml
+domains:
+  example_domain:
+    inputs:
+      recent_orders:
+        path: "mssql+pyodbc://sa:YourPassword@SQLSERVER-HOST/warehouse?driver=ODBC+Driver+17+for+SQL+Server"
+        format: sql
+        options:
+          query: |
+            SELECT order_id, customer_id, amount, order_date
+            FROM sales.orders
+            WHERE YEAR(order_date) = YEAR(GETDATE())
+```
+
+### Write to MSSQL table
+
+```yaml
+domains:
+  example_domain:
+    outputs:
+      scores:
+        path: "mssql+pyodbc://sa:YourPassword@localhost/warehouse?driver=ODBC+Driver+17+for+SQL+Server"
+        format: sql
+        options:
+          table: "dbo.customer_scores"
+          if_exists: "replace"
+          write_options:
+            method: "multi"
+            chunksize: 1000
+```
+
+**Connection string formats:**
+- `mssql+pyodbc://user:password@host/database?driver=ODBC+Driver+17+for+SQL+Server`
+- `mssql+pyodbc://user:password@localhost/database?driver=ODBC+Driver+17+for+SQL+Server` (local)
+- Windows Auth: `mssql+pyodbc://user:password@host/database?driver=ODBC+Driver+17+for+SQL+Server&Trusted_Connection=yes`
+
+## Amazon S3
+
+Read and write CSV, Parquet, JSON, and other formats directly from S3 buckets using fsspec storage options.
+
+### Read CSV from S3
+
+```yaml
+domains:
+  example_domain:
+    inputs:
+      customers:
+        path: "s3://my-bucket/silver/customers.csv"
+        format: csv
+        storage_options:
+          anon: false
+          client_kwargs:
+            region_name: "us-east-1"
+```
+
+### Read Parquet from S3 with credentials
+
+```yaml
+domains:
+  example_domain:
+    inputs:
+      transactions:
+        path: "s3://my-bucket/silver/transactions.parquet"
+        format: parquet
+        storage_options:
+          key: "${oc.env:AWS_ACCESS_KEY_ID}"
+          secret: "${oc.env:AWS_SECRET_ACCESS_KEY}"
+          client_kwargs:
+            region_name: "us-west-2"
+```
+
+### Write to S3
+
+```yaml
+domains:
+  example_domain:
+    outputs:
+      scores:
+        path: "s3://my-bucket/gold/example_domain/scores.csv"
+        format: csv
+        storage_options:
+          client_kwargs:
+            region_name: "us-east-1"
+        options:
+          sep: ","
+          index: false
+```
+
+### S3 with environment variables
+
+```yaml
+domains:
+  example_domain:
+    inputs:
+      data:
+        path: "${oc.env:DATA_PATH}"  # e.g., s3://bucket/path
+        format: parquet
+        storage_options:
+          key: "${oc.env:AWS_ACCESS_KEY_ID}"
+          secret: "${oc.env:AWS_SECRET_ACCESS_KEY}"
+```
+
+**Common S3 options:**
+- `anon: true` - Anonymous access (public buckets)
+- `key: "..."` - AWS Access Key ID
+- `secret: "..."` - AWS Secret Access Key
+- `token: "..."` - Temporary session token
+- `client_kwargs.region_name: "us-east-1"` - AWS region
+
+## Databricks
+
+Databricks deployments can read/write from Unity Catalog tables using SQL or Delta format.
+
+### Read from Databricks Unity Catalog (SQL)
+
+```yaml
+domains:
+  example_domain:
+    inputs:
+      customers:
+        path: "databricks:///?host=${oc.env:DATABRICKS_HOST}&http_path=${oc.env:DATABRICKS_HTTP_PATH}&token=${oc.env:DATABRICKS_TOKEN}"
+        format: sql
+        options:
+          query: "SELECT * FROM main.silver.customers"
+          read_options:
+            parse_dates: ["created_at"]
+```
+
+### Read from Databricks Delta Lake
+
+```yaml
+domains:
+  example_domain:
+    inputs:
+      transactions:
+        path: "dbfs:/mnt/silver/transactions"
+        format: delta
+```
+
+### Write to Databricks SQL table
+
+```yaml
+domains:
+  example_domain:
+    outputs:
+      scores:
+        path: "databricks:///?host=${oc.env:DATABRICKS_HOST}&http_path=${oc.env:DATABRICKS_HTTP_PATH}&token=${oc.env:DATABRICKS_TOKEN}"
+        format: sql
+        options:
+          query: "INSERT INTO main.gold.customer_scores SELECT * FROM {{table}}"
+          table: "main.gold.customer_scores"
+          if_exists: "append"
+```
+
+### Write to Databricks Delta Lake with partitioning
+
+```yaml
+domains:
+  example_domain:
+    outputs:
+      scores:
+        path: "s3://my-bucket/gold/scores"
+        format: delta
+        options:
+          mode: "overwrite"
+          partition_by: ["year", "month"]
+```
+
+**Databricks connection notes:**
+- Install `databricks-sql-connector`: `uv add databricks-sql-connector`
+- Get credentials from Databricks workspace settings
+- DBFS paths use `dbfs:/` prefix
+- Volume paths use `dbfs:/Volumes/catalog/schema/volume/path`
+
+### Environment-based Databricks config
+
+```yaml
+# configs/infrastructure/databricks.yaml
+databricks:
+  host: ${oc.env:DATABRICKS_HOST}
+  http_path: ${oc.env:DATABRICKS_HTTP_PATH}
+  token: ${oc.env:DATABRICKS_TOKEN}
+```
+
+Then reference in domain configs:
+
+```yaml
+domains:
+  example_domain:
+    inputs:
+      data:
+        path: "databricks:///?host=${databricks.host}&http_path=${databricks.http_path}&token=${databricks.token}"
+        format: sql
+        options:
+          query: "SELECT * FROM main.silver.data"
+```
+
+## Storage options and fsspec
+
+Pass `storage_options` for cloud storage backend paths (S3, GCS, Azure Blob Storage, etc.). These are passed directly to fsspec.
+
+```yaml
+domains:
+  example_domain:
+    inputs:
+      customers:
+        path: "s3://bucket/silver/customers.csv"
+        format: csv
+        storage_options:
+          anon: false
+          client_kwargs:
+            region_name: "eu-west-1"
+```
+
+## Examples in configuration
+
+### Mixed formats in one pipeline
+
+```yaml
+domains:
+  example_domain:
+    inputs:
+      customers:
+        path: data/silver/customers.csv
+        format: csv
+      transactions:
+        path: data/silver/transactions.parquet
+        format: parquet
+      orders_db:
+        path: "postgresql://user:pass@localhost/db"
+        format: sql
+        options:
+          query: "SELECT * FROM orders WHERE status = 'active'"
+    outputs:
+      scores_csv:
+        path: data/gold/example_domain/scores.csv
+        format: csv
+        options:
+          sep: ","
+          index: false
+      metrics_parquet:
+        path: data/gold/example_domain/metrics.parquet
+        format: parquet
+        options:
+          compression: "snappy"
+      scores_db:
+        path: "postgresql://user:pass@localhost/db"
+        format: sql
+        options:
+          table: "scores_report"
+          if_exists: "replace"
+```
+
+## Troubleshooting
+
+**CSV with NA region labels:** By default, CSV reading treats "NA" as missing. To preserve it, use:
+
+```yaml
+catalogs:
+  regions:
+    path: regions.csv
+    format: csv
+    options:
+      keep_default_na: false
+      na_values: [""]
+```
+
+**SQL connection errors:** Ensure the database driver is installed:
+- PostgreSQL: `pip install psycopg2-binary`
+- MySQL: `pip install pymysql`
+- MSSQL: `pip install pyodbc`
+
+**Memory on large parquet:** To read large Parquet files in chunks, use:
+
+```yaml
+catalogs:
+  large_dataset:
+    path: data/large.parquet
+    format: parquet
+    options:
+      columns: ["id", "value"]  # Select fewer columns
+```
+
+## See also
+
+- [User Guide - IO and format options](user_guide.md#io-and-format-options)
+- [Examples - Format options examples](examples.md#format-options-examples)
+- [pandas.read_csv documentation](https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html)
+- [pandas.to_sql documentation](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_sql.html)
+- [SQLAlchemy connection strings](https://docs.sqlalchemy.org/en/20/core/engines.html)

@@ -1,0 +1,8 @@
+2026-02-14 18:51:37 INFO [-] insert_package_name.core.logging:98 - Logging to C:\Users\ander\Desktop\programming\group funding\functional_core_imperative_shell/logs\run_2026-02-14_18.51.37.log
+2026-02-14 18:51:37 INFO [-] orchestrator:55 - Starting orchestration with safe-loading pattern
+2026-02-14 18:51:37 INFO [-] orchestrator:63 - Attempting to load 1 domain(s): ['example_domain']
+2026-02-14 18:51:37 INFO [-] orchestrator:80 - [OK] Successfully loaded config for domain: example_domain
+2026-02-14 18:51:37 INFO [-] orchestrator:91 - Config loading complete: 1 valid, 0 failed
+2026-02-14 18:51:37 INFO [example_domain] orchestrator:137 - Starting domain
+2026-02-14 18:51:37 INFO [Example Domain] insert_package_name.domains.example_domain.pipeline:32 - Wrote 4 scores and 2 metrics
+2026-02-14 18:51:37 INFO [example_domain] orchestrator:141 - Completed domain

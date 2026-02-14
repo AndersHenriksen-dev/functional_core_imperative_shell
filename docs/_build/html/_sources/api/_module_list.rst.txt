@@ -1,0 +1,64 @@
+.. This file is auto-generated. Do not edit by hand.
+
+Core
+----
+
+.. autosummary::
+    :toctree: _generated
+    :template: package
+
+    data_handling.core
+
+.. autosummary::
+    :toctree: _generated
+    :template: module
+
+    data_handling.core.errors
+    data_handling.core.io
+    data_handling.core.logging
+    data_handling.core.orchestrator
+    data_handling.core.validation
+
+Schema & Config
+---------------
+
+.. autosummary::
+    :toctree: _generated
+    :template: package
+
+    data_handling.schema
+
+.. autosummary::
+    :toctree: _generated
+    :template: module
+
+    data_handling.schema.types
+    data_handling.schema.config_models
+    data_handling.schema.data_contracts
+
+Domains
+-------
+
+.. autosummary::
+    :toctree: _generated
+    :template: package
+
+    data_handling.domains
+    data_handling.domains.example_domain
+
+.. autosummary::
+    :toctree: _generated
+    :template: module
+
+    data_handling.domains.example_domain.ops
+    data_handling.domains.example_domain.pipeline
+    data_handling.domains.example_domain.schemas
+
+Entry Points
+------------
+
+.. autosummary::
+    :toctree: _generated
+    :template: module
+
+    data_handling.main

@@ -1,0 +1,1279 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index &#8212; data_handling  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=8a448e45"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">data_handling  documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="getting_started.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="user_guide.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="io_formats.html">
+    IO Formats and Options Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API Reference
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="api_style_guide.html">
+    API style guide
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="getting_started.html">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="user_guide.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="io_formats.html">
+    IO Formats and Options Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api_style_guide.html">
+    API style guide
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#A"><strong>A</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#J"><strong>J</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
+ | <a href="#V"><strong>V</strong></a>
+ | <a href="#W"><strong>W</strong></a>
+ 
+</div>
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.GlobalConfigModel.html#data_handling.schema.config_models.GlobalConfigModel.active_domains">active_domains (data_handling.schema.config_models.GlobalConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.GlobalConfigModel.active_domains">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.GlobalConfig.active_domains">(data_handling.schema.GlobalConfig attribute)</a>
+</li>
+        <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.GlobalConfigModel.active_domains">(data_handling.schema.GlobalConfigModel attribute)</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.types.GlobalConfig.html#data_handling.schema.types.GlobalConfig.active_domains">(data_handling.schema.types.GlobalConfig attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.GlobalConfig.active_domains">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.GlobalConfigModel.html#data_handling.schema.config_models.GlobalConfigModel.active_tags">active_tags (data_handling.schema.config_models.GlobalConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.GlobalConfigModel.active_tags">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.GlobalConfig.active_tags">(data_handling.schema.GlobalConfig attribute)</a>
+</li>
+        <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.GlobalConfigModel.active_tags">(data_handling.schema.GlobalConfigModel attribute)</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.types.GlobalConfig.html#data_handling.schema.types.GlobalConfig.active_tags">(data_handling.schema.types.GlobalConfig attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.GlobalConfig.active_tags">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/_members/data_handling.schema.data_contracts.SilverCustomersSchema.html#data_handling.schema.data_contracts.SilverCustomersSchema.age">age (data_handling.schema.data_contracts.SilverCustomersSchema attribute)</a>, <a href="api/_generated/data_handling.schema.data_contracts.html#data_handling.schema.data_contracts.SilverCustomersSchema.age">[1]</a>
+</li>
+      <li><a href="api/_generated/_members/data_handling.schema.data_contracts.SilverTransactionsSchema.html#data_handling.schema.data_contracts.SilverTransactionsSchema.amount">amount (data_handling.schema.data_contracts.SilverTransactionsSchema attribute)</a>, <a href="api/_generated/data_handling.schema.data_contracts.html#data_handling.schema.data_contracts.SilverTransactionsSchema.amount">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/_members/data_handling.domains.example_domain.schemas.GoldScoresSchema.html#data_handling.domains.example_domain.schemas.GoldScoresSchema.churn_probability">churn_probability (data_handling.domains.example_domain.schemas.GoldScoresSchema attribute)</a>, <a href="api/_generated/data_handling.domains.example_domain.schemas.html#data_handling.domains.example_domain.schemas.GoldScoresSchema.churn_probability">[1]</a>
+</li>
+      <li><a href="api/_generated/_members/data_handling.domains.example_domain.schemas.GoldMetricsSchema.html#data_handling.domains.example_domain.schemas.GoldMetricsSchema.Config.coerce">coerce (data_handling.domains.example_domain.schemas.GoldMetricsSchema.Config attribute)</a>, <a href="api/_generated/data_handling.domains.example_domain.schemas.html#data_handling.domains.example_domain.schemas.GoldMetricsSchema.Config.coerce">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.domains.example_domain.schemas.GoldScoresSchema.html#data_handling.domains.example_domain.schemas.GoldScoresSchema.Config.coerce">(data_handling.domains.example_domain.schemas.GoldScoresSchema.Config attribute)</a>, <a href="api/_generated/data_handling.domains.example_domain.schemas.html#data_handling.domains.example_domain.schemas.GoldScoresSchema.Config.coerce">[1]</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.data_contracts.SilverCustomersSchema.html#data_handling.schema.data_contracts.SilverCustomersSchema.Config.coerce">(data_handling.schema.data_contracts.SilverCustomersSchema.Config attribute)</a>, <a href="api/_generated/data_handling.schema.data_contracts.html#data_handling.schema.data_contracts.SilverCustomersSchema.Config.coerce">[1]</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.data_contracts.SilverTransactionsSchema.html#data_handling.schema.data_contracts.SilverTransactionsSchema.Config.coerce">(data_handling.schema.data_contracts.SilverTransactionsSchema.Config attribute)</a>, <a href="api/_generated/data_handling.schema.data_contracts.html#data_handling.schema.data_contracts.SilverTransactionsSchema.Config.coerce">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/_members/data_handling.domains.example_domain.ops.compute_metrics.html#data_handling.domains.example_domain.ops.compute_metrics">compute_metrics() (in module data_handling.domains.example_domain.ops)</a>, <a href="api/_generated/data_handling.domains.example_domain.ops.html#data_handling.domains.example_domain.ops.compute_metrics">[1]</a>
+</li>
+      <li><a href="api/_generated/_members/data_handling.domains.example_domain.ops.compute_scores.html#data_handling.domains.example_domain.ops.compute_scores">compute_scores() (in module data_handling.domains.example_domain.ops)</a>, <a href="api/_generated/data_handling.domains.example_domain.ops.html#data_handling.domains.example_domain.ops.compute_scores">[1]</a>
+</li>
+      <li><a href="api/_generated/data_handling.core.html#data_handling.core.configure_logging">configure_logging() (in module data_handling.core)</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.core.logging.configure_logging.html#data_handling.core.logging.configure_logging">(in module data_handling.core.logging)</a>, <a href="api/_generated/data_handling.core.logging.html#data_handling.core.logging.configure_logging">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/data_handling.core.errors.html#data_handling.core.errors.ConfigValidationError">ConfigValidationError</a>, <a href="api/_generated/data_handling.core.html#data_handling.core.ConfigValidationError">[1]</a>
+</li>
+      <li><a href="api/_generated/_members/data_handling.schema.data_contracts.SilverCustomersSchema.html#data_handling.schema.data_contracts.SilverCustomersSchema.country">country (data_handling.schema.data_contracts.SilverCustomersSchema attribute)</a>, <a href="api/_generated/data_handling.schema.data_contracts.html#data_handling.schema.data_contracts.SilverCustomersSchema.country">[1]</a>
+</li>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.ScheduleConfigModel.html#data_handling.schema.config_models.ScheduleConfigModel.cron">cron (data_handling.schema.config_models.ScheduleConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.ScheduleConfigModel.cron">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.schema.types.ScheduleConfig.html#data_handling.schema.types.ScheduleConfig.cron">(data_handling.schema.types.ScheduleConfig attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.ScheduleConfig.cron">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.FileFormat.CSV">CSV (data_handling.schema.FileFormat attribute)</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.schema.types.FileFormat.html#data_handling.schema.types.FileFormat.CSV">(data_handling.schema.types.FileFormat attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.FileFormat.CSV">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/_members/data_handling.domains.example_domain.schemas.GoldScoresSchema.html#data_handling.domains.example_domain.schemas.GoldScoresSchema.customer_id">customer_id (data_handling.domains.example_domain.schemas.GoldScoresSchema attribute)</a>, <a href="api/_generated/data_handling.domains.example_domain.schemas.html#data_handling.domains.example_domain.schemas.GoldScoresSchema.customer_id">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.schema.data_contracts.SilverCustomersSchema.html#data_handling.schema.data_contracts.SilverCustomersSchema.customer_id">(data_handling.schema.data_contracts.SilverCustomersSchema attribute)</a>, <a href="api/_generated/data_handling.schema.data_contracts.html#data_handling.schema.data_contracts.SilverCustomersSchema.customer_id">[1]</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.data_contracts.SilverTransactionsSchema.html#data_handling.schema.data_contracts.SilverTransactionsSchema.customer_id">(data_handling.schema.data_contracts.SilverTransactionsSchema attribute)</a>, <a href="api/_generated/data_handling.schema.data_contracts.html#data_handling.schema.data_contracts.SilverTransactionsSchema.customer_id">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    data_handling.core
+
+      <ul>
+        <li><a href="api/_generated/data_handling.core.html#module-data_handling.core">module</a>
+</li>
+      </ul></li>
+      <li>
+    data_handling.core.errors
+
+      <ul>
+        <li><a href="api/_generated/data_handling.core.errors.html#module-data_handling.core.errors">module</a>
+</li>
+      </ul></li>
+      <li>
+    data_handling.core.io
+
+      <ul>
+        <li><a href="api/_generated/data_handling.core.io.html#module-data_handling.core.io">module</a>
+</li>
+      </ul></li>
+      <li>
+    data_handling.core.logging
+
+      <ul>
+        <li><a href="api/_generated/data_handling.core.logging.html#module-data_handling.core.logging">module</a>
+</li>
+      </ul></li>
+      <li>
+    data_handling.core.orchestrator
+
+      <ul>
+        <li><a href="api/_generated/data_handling.core.orchestrator.html#module-data_handling.core.orchestrator">module</a>
+</li>
+      </ul></li>
+      <li>
+    data_handling.core.validation
+
+      <ul>
+        <li><a href="api/_generated/data_handling.core.validation.html#module-data_handling.core.validation">module</a>
+</li>
+      </ul></li>
+      <li>
+    data_handling.domains
+
+      <ul>
+        <li><a href="api/_generated/data_handling.domains.html#module-data_handling.domains">module</a>
+</li>
+      </ul></li>
+      <li>
+    data_handling.domains.example_domain
+
+      <ul>
+        <li><a href="api/_generated/data_handling.domains.example_domain.html#module-data_handling.domains.example_domain">module</a>
+</li>
+      </ul></li>
+      <li>
+    data_handling.domains.example_domain.ops
+
+      <ul>
+        <li><a href="api/_generated/data_handling.domains.example_domain.ops.html#module-data_handling.domains.example_domain.ops">module</a>
+</li>
+      </ul></li>
+      <li>
+    data_handling.domains.example_domain.pipeline
+
+      <ul>
+        <li><a href="api/_generated/data_handling.domains.example_domain.pipeline.html#module-data_handling.domains.example_domain.pipeline">module</a>
+</li>
+      </ul></li>
+      <li>
+    data_handling.domains.example_domain.schemas
+
+      <ul>
+        <li><a href="api/_generated/data_handling.domains.example_domain.schemas.html#module-data_handling.domains.example_domain.schemas">module</a>
+</li>
+      </ul></li>
+      <li>
+    data_handling.main
+
+      <ul>
+        <li><a href="api/_generated/data_handling.main.html#module-data_handling.main">module</a>
+</li>
+      </ul></li>
+      <li>
+    data_handling.schema
+
+      <ul>
+        <li><a href="api/_generated/data_handling.schema.html#module-data_handling.schema">module</a>
+</li>
+      </ul></li>
+      <li>
+    data_handling.schema.config_models
+
+      <ul>
+        <li><a href="api/_generated/data_handling.schema.config_models.html#module-data_handling.schema.config_models">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    data_handling.schema.data_contracts
+
+      <ul>
+        <li><a href="api/_generated/data_handling.schema.data_contracts.html#module-data_handling.schema.data_contracts">module</a>
+</li>
+      </ul></li>
+      <li>
+    data_handling.schema.types
+
+      <ul>
+        <li><a href="api/_generated/data_handling.schema.types.html#module-data_handling.schema.types">module</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/data_handling.core.errors.html#data_handling.core.errors.DataHandlingError">DataHandlingError</a>, <a href="api/_generated/data_handling.core.html#data_handling.core.DataHandlingError">[1]</a>
+</li>
+      <li><a href="api/_generated/data_handling.core.errors.html#data_handling.core.errors.SchemaValidationError.dataset">dataset (data_handling.core.errors.SchemaValidationError attribute)</a>
+
+      <ul>
+        <li><a href="api/_generated/data_handling.core.html#data_handling.core.SchemaValidationError.dataset">(data_handling.core.SchemaValidationError attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.ScheduleConfigModel.html#data_handling.schema.config_models.ScheduleConfigModel.day_of_month">day_of_month (data_handling.schema.config_models.ScheduleConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.ScheduleConfigModel.day_of_month">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.schema.types.ScheduleConfig.html#data_handling.schema.types.ScheduleConfig.day_of_month">(data_handling.schema.types.ScheduleConfig attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.ScheduleConfig.day_of_month">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.ScheduleConfigModel.html#data_handling.schema.config_models.ScheduleConfigModel.day_of_week">day_of_week (data_handling.schema.config_models.ScheduleConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.ScheduleConfigModel.day_of_week">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.schema.types.ScheduleConfig.html#data_handling.schema.types.ScheduleConfig.day_of_week">(data_handling.schema.types.ScheduleConfig attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.ScheduleConfig.day_of_week">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.FileFormat.DELTA">DELTA (data_handling.schema.FileFormat attribute)</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.schema.types.FileFormat.html#data_handling.schema.types.FileFormat.DELTA">(data_handling.schema.types.FileFormat attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.FileFormat.DELTA">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/data_handling.core.errors.html#data_handling.core.errors.OptionalDependencyError.dependency">dependency (data_handling.core.errors.OptionalDependencyError attribute)</a>
+
+      <ul>
+        <li><a href="api/_generated/data_handling.core.html#data_handling.core.OptionalDependencyError.dependency">(data_handling.core.OptionalDependencyError attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/data_handling.core.html#data_handling.core.ConfigValidationError.details">details (data_handling.core.ConfigValidationError attribute)</a>
+
+      <ul>
+        <li><a href="api/_generated/data_handling.core.errors.html#data_handling.core.errors.ConfigValidationError.details">(data_handling.core.errors.ConfigValidationError attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/data_handling.core.errors.html#data_handling.core.errors.DomainError.domain">domain (data_handling.core.errors.DomainError attribute)</a>
+</li>
+      <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.DomainConfig">DomainConfig (class in data_handling.schema)</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.schema.types.DomainConfig.html#data_handling.schema.types.DomainConfig">(class in data_handling.schema.types)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.DomainConfig">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.DomainConfigModel.html#data_handling.schema.config_models.DomainConfigModel">DomainConfigModel (class in data_handling.schema.config_models)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.DomainConfigModel">[1]</a>
+</li>
+      <li><a href="api/_generated/data_handling.core.errors.html#data_handling.core.errors.DomainError">DomainError</a>
+</li>
+      <li><a href="api/_generated/data_handling.core.errors.html#data_handling.core.errors.DomainExecutionError">DomainExecutionError</a>, <a href="api/_generated/data_handling.core.html#data_handling.core.DomainExecutionError">[1]</a>
+</li>
+      <li><a href="api/_generated/data_handling.core.errors.html#data_handling.core.errors.DomainInterfaceError">DomainInterfaceError</a>, <a href="api/_generated/data_handling.core.html#data_handling.core.DomainInterfaceError">[1]</a>
+</li>
+      <li><a href="api/_generated/data_handling.core.errors.html#data_handling.core.errors.DomainNotFoundError">DomainNotFoundError</a>, <a href="api/_generated/data_handling.core.html#data_handling.core.DomainNotFoundError">[1]</a>
+</li>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.GlobalConfigModel.html#data_handling.schema.config_models.GlobalConfigModel.domains">domains (data_handling.schema.config_models.GlobalConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.GlobalConfigModel.domains">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.GlobalConfig.domains">(data_handling.schema.GlobalConfig attribute)</a>
+</li>
+        <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.GlobalConfigModel.domains">(data_handling.schema.GlobalConfigModel attribute)</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.types.GlobalConfig.html#data_handling.schema.types.GlobalConfig.domains">(data_handling.schema.types.GlobalConfig attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.GlobalConfig.domains">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.DomainConfigModel.html#data_handling.schema.config_models.DomainConfigModel.enabled">enabled (data_handling.schema.config_models.DomainConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.DomainConfigModel.enabled">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.schema.config_models.ScheduleConfigModel.html#data_handling.schema.config_models.ScheduleConfigModel.enabled">(data_handling.schema.config_models.ScheduleConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.ScheduleConfigModel.enabled">[1]</a>
+</li>
+        <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.DomainConfig.enabled">(data_handling.schema.DomainConfig attribute)</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.types.DomainConfig.html#data_handling.schema.types.DomainConfig.enabled">(data_handling.schema.types.DomainConfig attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.DomainConfig.enabled">[1]</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.types.ScheduleConfig.html#data_handling.schema.types.ScheduleConfig.enabled">(data_handling.schema.types.ScheduleConfig attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.ScheduleConfig.enabled">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.GlobalConfigModel.html#data_handling.schema.config_models.GlobalConfigModel.env">env (data_handling.schema.config_models.GlobalConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.GlobalConfigModel.env">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.GlobalConfig.env">(data_handling.schema.GlobalConfig attribute)</a>
+</li>
+        <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.GlobalConfigModel.env">(data_handling.schema.GlobalConfigModel attribute)</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.types.GlobalConfig.html#data_handling.schema.types.GlobalConfig.env">(data_handling.schema.types.GlobalConfig attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.GlobalConfig.env">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.FileFormat.EXCEL">EXCEL (data_handling.schema.FileFormat attribute)</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.schema.types.FileFormat.html#data_handling.schema.types.FileFormat.EXCEL">(data_handling.schema.types.FileFormat attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.FileFormat.EXCEL">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.FileFormat.FEATHER">FEATHER (data_handling.schema.FileFormat attribute)</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.schema.types.FileFormat.html#data_handling.schema.types.FileFormat.FEATHER">(data_handling.schema.types.FileFormat attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.FileFormat.FEATHER">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/data_handling.core.errors.html#data_handling.core.errors.OptionalDependencyError.feature">feature (data_handling.core.errors.OptionalDependencyError attribute)</a>
+
+      <ul>
+        <li><a href="api/_generated/data_handling.core.html#data_handling.core.OptionalDependencyError.feature">(data_handling.core.OptionalDependencyError attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/data_handling.core.errors.html#data_handling.core.errors.IOErrorBase.file_format">file_format (data_handling.core.errors.IOErrorBase attribute)</a>
+
+      <ul>
+        <li><a href="api/_generated/data_handling.core.html#data_handling.core.IOErrorBase.file_format">(data_handling.core.IOErrorBase attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.FileFormat">FileFormat (class in data_handling.schema)</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.schema.types.FileFormat.html#data_handling.schema.types.FileFormat">(class in data_handling.schema.types)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.FileFormat">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.IOConfigModel.html#data_handling.schema.config_models.IOConfigModel.format">format (data_handling.schema.config_models.IOConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.IOConfigModel.format">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.IOConfig.format">(data_handling.schema.IOConfig attribute)</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.types.IOConfig.html#data_handling.schema.types.IOConfig.format">(data_handling.schema.types.IOConfig attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.IOConfig.format">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/data_handling.core.html#data_handling.core.get_domain_logger">get_domain_logger() (in module data_handling.core)</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.core.logging.get_domain_logger.html#data_handling.core.logging.get_domain_logger">(in module data_handling.core.logging)</a>, <a href="api/_generated/data_handling.core.logging.html#data_handling.core.logging.get_domain_logger">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/data_handling.core.html#data_handling.core.get_logger">get_logger() (in module data_handling.core)</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.core.logging.get_logger.html#data_handling.core.logging.get_logger">(in module data_handling.core.logging)</a>, <a href="api/_generated/data_handling.core.logging.html#data_handling.core.logging.get_logger">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.GlobalConfig">GlobalConfig (class in data_handling.schema)</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.schema.types.GlobalConfig.html#data_handling.schema.types.GlobalConfig">(class in data_handling.schema.types)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.GlobalConfig">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.GlobalConfigModel">GlobalConfigModel (class in data_handling.schema)</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.schema.config_models.GlobalConfigModel.html#data_handling.schema.config_models.GlobalConfigModel">(class in data_handling.schema.config_models)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.GlobalConfigModel">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/_members/data_handling.domains.example_domain.schemas.GoldMetricsSchema.html#data_handling.domains.example_domain.schemas.GoldMetricsSchema">GoldMetricsSchema (class in data_handling.domains.example_domain.schemas)</a>, <a href="api/_generated/data_handling.domains.example_domain.schemas.html#data_handling.domains.example_domain.schemas.GoldMetricsSchema">[1]</a>
+</li>
+      <li><a href="api/_generated/_members/data_handling.domains.example_domain.schemas.GoldMetricsSchema.html#data_handling.domains.example_domain.schemas.GoldMetricsSchema.Config">GoldMetricsSchema.Config (class in data_handling.domains.example_domain.schemas)</a>, <a href="api/_generated/data_handling.domains.example_domain.schemas.html#data_handling.domains.example_domain.schemas.GoldMetricsSchema.Config">[1]</a>
+</li>
+      <li><a href="api/_generated/_members/data_handling.domains.example_domain.schemas.GoldScoresSchema.html#data_handling.domains.example_domain.schemas.GoldScoresSchema">GoldScoresSchema (class in data_handling.domains.example_domain.schemas)</a>, <a href="api/_generated/data_handling.domains.example_domain.schemas.html#data_handling.domains.example_domain.schemas.GoldScoresSchema">[1]</a>
+</li>
+      <li><a href="api/_generated/_members/data_handling.domains.example_domain.schemas.GoldScoresSchema.html#data_handling.domains.example_domain.schemas.GoldScoresSchema.Config">GoldScoresSchema.Config (class in data_handling.domains.example_domain.schemas)</a>, <a href="api/_generated/data_handling.domains.example_domain.schemas.html#data_handling.domains.example_domain.schemas.GoldScoresSchema.Config">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.ScheduleConfigModel.html#data_handling.schema.config_models.ScheduleConfigModel.hour">hour (data_handling.schema.config_models.ScheduleConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.ScheduleConfigModel.hour">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.schema.types.ScheduleConfig.html#data_handling.schema.types.ScheduleConfig.hour">(data_handling.schema.types.ScheduleConfig attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.ScheduleConfig.hour">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.DomainConfigModel.html#data_handling.schema.config_models.DomainConfigModel.inputs">inputs (data_handling.schema.config_models.DomainConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.DomainConfigModel.inputs">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.DomainConfig.inputs">(data_handling.schema.DomainConfig attribute)</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.types.DomainConfig.html#data_handling.schema.types.DomainConfig.inputs">(data_handling.schema.types.DomainConfig attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.DomainConfig.inputs">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.ScheduleConfigModel.html#data_handling.schema.config_models.ScheduleConfigModel.interval">interval (data_handling.schema.config_models.ScheduleConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.ScheduleConfigModel.interval">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.schema.types.ScheduleConfig.html#data_handling.schema.types.ScheduleConfig.interval">(data_handling.schema.types.ScheduleConfig attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.ScheduleConfig.interval">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.IOConfig">IOConfig (class in data_handling.schema)</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.schema.types.IOConfig.html#data_handling.schema.types.IOConfig">(class in data_handling.schema.types)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.IOConfig">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/data_handling.core.errors.html#data_handling.core.errors.IOConfigError">IOConfigError</a>, <a href="api/_generated/data_handling.core.html#data_handling.core.IOConfigError">[1]</a>
+</li>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.IOConfigModel.html#data_handling.schema.config_models.IOConfigModel">IOConfigModel (class in data_handling.schema.config_models)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.IOConfigModel">[1]</a>
+</li>
+      <li><a href="api/_generated/data_handling.core.errors.html#data_handling.core.errors.IOErrorBase">IOErrorBase</a>, <a href="api/_generated/data_handling.core.html#data_handling.core.IOErrorBase">[1]</a>
+</li>
+      <li><a href="api/_generated/data_handling.core.errors.html#data_handling.core.errors.IOReadError">IOReadError</a>, <a href="api/_generated/data_handling.core.html#data_handling.core.IOReadError">[1]</a>
+</li>
+      <li><a href="api/_generated/data_handling.core.errors.html#data_handling.core.errors.IOWriteError">IOWriteError</a>, <a href="api/_generated/data_handling.core.html#data_handling.core.IOWriteError">[1]</a>
+</li>
+      <li><a href="api/_generated/_members/data_handling.domains.example_domain.schemas.GoldScoresSchema.html#data_handling.domains.example_domain.schemas.GoldScoresSchema.is_high_risk">is_high_risk (data_handling.domains.example_domain.schemas.GoldScoresSchema attribute)</a>, <a href="api/_generated/data_handling.domains.example_domain.schemas.html#data_handling.domains.example_domain.schemas.GoldScoresSchema.is_high_risk">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="J">J</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.FileFormat.JSON">JSON (data_handling.schema.FileFormat attribute)</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.schema.types.FileFormat.html#data_handling.schema.types.FileFormat.JSON">(data_handling.schema.types.FileFormat attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.FileFormat.JSON">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.LoggingConfigModel.html#data_handling.schema.config_models.LoggingConfigModel.level">level (data_handling.schema.config_models.LoggingConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.LoggingConfigModel.level">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.LoggingConfig.level">(data_handling.schema.LoggingConfig attribute)</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.types.LoggingConfig.html#data_handling.schema.types.LoggingConfig.level">(data_handling.schema.types.LoggingConfig attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.LoggingConfig.level">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/data_handling.core.html#data_handling.core.load_and_validate_config">load_and_validate_config() (in module data_handling.core)</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.core.validation.load_and_validate_config.html#data_handling.core.validation.load_and_validate_config">(in module data_handling.core.validation)</a>, <a href="api/_generated/data_handling.core.validation.html#data_handling.core.validation.load_and_validate_config">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.LoggingConfigModel.html#data_handling.schema.config_models.LoggingConfigModel.log_dir">log_dir (data_handling.schema.config_models.LoggingConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.LoggingConfigModel.log_dir">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.LoggingConfig.log_dir">(data_handling.schema.LoggingConfig attribute)</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.types.LoggingConfig.html#data_handling.schema.types.LoggingConfig.log_dir">(data_handling.schema.types.LoggingConfig attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.LoggingConfig.log_dir">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.GlobalConfigModel.html#data_handling.schema.config_models.GlobalConfigModel.logging">logging (data_handling.schema.config_models.GlobalConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.GlobalConfigModel.logging">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.GlobalConfig.logging">(data_handling.schema.GlobalConfig attribute)</a>
+</li>
+        <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.GlobalConfigModel.logging">(data_handling.schema.GlobalConfigModel attribute)</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.types.GlobalConfig.html#data_handling.schema.types.GlobalConfig.logging">(data_handling.schema.types.GlobalConfig attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.GlobalConfig.logging">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/_members/data_handling.core.logging.logging_config_to_dict.html#data_handling.core.logging.logging_config_to_dict">logging_config_to_dict() (in module data_handling.core.logging)</a>, <a href="api/_generated/data_handling.core.logging.html#data_handling.core.logging.logging_config_to_dict">[1]</a>
+</li>
+      <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.LoggingConfig">LoggingConfig (class in data_handling.schema)</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.schema.types.LoggingConfig.html#data_handling.schema.types.LoggingConfig">(class in data_handling.schema.types)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.LoggingConfig">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.LoggingConfigModel.html#data_handling.schema.config_models.LoggingConfigModel">LoggingConfigModel (class in data_handling.schema.config_models)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.LoggingConfigModel">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/_members/data_handling.main.main.html#data_handling.main.main">main() (in module data_handling.main)</a>, <a href="api/_generated/data_handling.main.html#data_handling.main.main">[1]</a>
+</li>
+      <li><a href="api/_generated/data_handling.core.html#data_handling.core.ConfigValidationError.message">message (data_handling.core.ConfigValidationError attribute)</a>
+
+      <ul>
+        <li><a href="api/_generated/data_handling.core.errors.html#data_handling.core.errors.ConfigValidationError.message">(data_handling.core.errors.ConfigValidationError attribute)</a>
+</li>
+        <li><a href="api/_generated/data_handling.core.errors.html#data_handling.core.errors.DomainError.message">(data_handling.core.errors.DomainError attribute)</a>
+</li>
+        <li><a href="api/_generated/data_handling.core.errors.html#data_handling.core.errors.IOErrorBase.message">(data_handling.core.errors.IOErrorBase attribute)</a>
+</li>
+        <li><a href="api/_generated/data_handling.core.errors.html#data_handling.core.errors.SchemaValidationError.message">(data_handling.core.errors.SchemaValidationError attribute)</a>
+</li>
+        <li><a href="api/_generated/data_handling.core.html#data_handling.core.IOErrorBase.message">(data_handling.core.IOErrorBase attribute)</a>
+</li>
+        <li><a href="api/_generated/data_handling.core.html#data_handling.core.SchemaValidationError.message">(data_handling.core.SchemaValidationError attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/_members/data_handling.domains.example_domain.schemas.GoldMetricsSchema.html#data_handling.domains.example_domain.schemas.GoldMetricsSchema.metric">metric (data_handling.domains.example_domain.schemas.GoldMetricsSchema attribute)</a>, <a href="api/_generated/data_handling.domains.example_domain.schemas.html#data_handling.domains.example_domain.schemas.GoldMetricsSchema.metric">[1]</a>
+</li>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.ScheduleConfigModel.html#data_handling.schema.config_models.ScheduleConfigModel.minute">minute (data_handling.schema.config_models.ScheduleConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.ScheduleConfigModel.minute">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.schema.types.ScheduleConfig.html#data_handling.schema.types.ScheduleConfig.minute">(data_handling.schema.types.ScheduleConfig attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.ScheduleConfig.minute">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.DomainConfigModel.html#data_handling.schema.config_models.DomainConfigModel.model_config">model_config (data_handling.schema.config_models.DomainConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.DomainConfigModel.model_config">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.schema.config_models.GlobalConfigModel.html#data_handling.schema.config_models.GlobalConfigModel.model_config">(data_handling.schema.config_models.GlobalConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.GlobalConfigModel.model_config">[1]</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.config_models.IOConfigModel.html#data_handling.schema.config_models.IOConfigModel.model_config">(data_handling.schema.config_models.IOConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.IOConfigModel.model_config">[1]</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.config_models.LoggingConfigModel.html#data_handling.schema.config_models.LoggingConfigModel.model_config">(data_handling.schema.config_models.LoggingConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.LoggingConfigModel.model_config">[1]</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.config_models.ScheduleConfigModel.html#data_handling.schema.config_models.ScheduleConfigModel.model_config">(data_handling.schema.config_models.ScheduleConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.ScheduleConfigModel.model_config">[1]</a>
+</li>
+        <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.GlobalConfigModel.model_config">(data_handling.schema.GlobalConfigModel attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    module
+
+      <ul>
+        <li><a href="api/_generated/data_handling.core.html#module-data_handling.core">data_handling.core</a>
+</li>
+        <li><a href="api/_generated/data_handling.core.errors.html#module-data_handling.core.errors">data_handling.core.errors</a>
+</li>
+        <li><a href="api/_generated/data_handling.core.io.html#module-data_handling.core.io">data_handling.core.io</a>
+</li>
+        <li><a href="api/_generated/data_handling.core.logging.html#module-data_handling.core.logging">data_handling.core.logging</a>
+</li>
+        <li><a href="api/_generated/data_handling.core.orchestrator.html#module-data_handling.core.orchestrator">data_handling.core.orchestrator</a>
+</li>
+        <li><a href="api/_generated/data_handling.core.validation.html#module-data_handling.core.validation">data_handling.core.validation</a>
+</li>
+        <li><a href="api/_generated/data_handling.domains.html#module-data_handling.domains">data_handling.domains</a>
+</li>
+        <li><a href="api/_generated/data_handling.domains.example_domain.html#module-data_handling.domains.example_domain">data_handling.domains.example_domain</a>
+</li>
+        <li><a href="api/_generated/data_handling.domains.example_domain.ops.html#module-data_handling.domains.example_domain.ops">data_handling.domains.example_domain.ops</a>
+</li>
+        <li><a href="api/_generated/data_handling.domains.example_domain.pipeline.html#module-data_handling.domains.example_domain.pipeline">data_handling.domains.example_domain.pipeline</a>
+</li>
+        <li><a href="api/_generated/data_handling.domains.example_domain.schemas.html#module-data_handling.domains.example_domain.schemas">data_handling.domains.example_domain.schemas</a>
+</li>
+        <li><a href="api/_generated/data_handling.main.html#module-data_handling.main">data_handling.main</a>
+</li>
+        <li><a href="api/_generated/data_handling.schema.html#module-data_handling.schema">data_handling.schema</a>
+</li>
+        <li><a href="api/_generated/data_handling.schema.config_models.html#module-data_handling.schema.config_models">data_handling.schema.config_models</a>
+</li>
+        <li><a href="api/_generated/data_handling.schema.data_contracts.html#module-data_handling.schema.data_contracts">data_handling.schema.data_contracts</a>
+</li>
+        <li><a href="api/_generated/data_handling.schema.types.html#module-data_handling.schema.types">data_handling.schema.types</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/_members/data_handling.domains.example_domain.schemas.GoldMetricsSchema.html#data_handling.domains.example_domain.schemas.GoldMetricsSchema.Config.name">name (data_handling.domains.example_domain.schemas.GoldMetricsSchema.Config attribute)</a>, <a href="api/_generated/data_handling.domains.example_domain.schemas.html#data_handling.domains.example_domain.schemas.GoldMetricsSchema.Config.name">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.domains.example_domain.schemas.GoldScoresSchema.html#data_handling.domains.example_domain.schemas.GoldScoresSchema.Config.name">(data_handling.domains.example_domain.schemas.GoldScoresSchema.Config attribute)</a>, <a href="api/_generated/data_handling.domains.example_domain.schemas.html#data_handling.domains.example_domain.schemas.GoldScoresSchema.Config.name">[1]</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.config_models.DomainConfigModel.html#data_handling.schema.config_models.DomainConfigModel.name">(data_handling.schema.config_models.DomainConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.DomainConfigModel.name">[1]</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.data_contracts.SilverCustomersSchema.html#data_handling.schema.data_contracts.SilverCustomersSchema.Config.name">(data_handling.schema.data_contracts.SilverCustomersSchema.Config attribute)</a>, <a href="api/_generated/data_handling.schema.data_contracts.html#data_handling.schema.data_contracts.SilverCustomersSchema.Config.name">[1]</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.data_contracts.SilverTransactionsSchema.html#data_handling.schema.data_contracts.SilverTransactionsSchema.Config.name">(data_handling.schema.data_contracts.SilverTransactionsSchema.Config attribute)</a>, <a href="api/_generated/data_handling.schema.data_contracts.html#data_handling.schema.data_contracts.SilverTransactionsSchema.Config.name">[1]</a>
+</li>
+        <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.DomainConfig.name">(data_handling.schema.DomainConfig attribute)</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.types.DomainConfig.html#data_handling.schema.types.DomainConfig.name">(data_handling.schema.types.DomainConfig attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.DomainConfig.name">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/data_handling.core.errors.html#data_handling.core.errors.OptionalDependencyError">OptionalDependencyError</a>, <a href="api/_generated/data_handling.core.html#data_handling.core.OptionalDependencyError">[1]</a>
+</li>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.IOConfigModel.html#data_handling.schema.config_models.IOConfigModel.options">options (data_handling.schema.config_models.IOConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.IOConfigModel.options">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.IOConfig.options">(data_handling.schema.IOConfig attribute)</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.types.IOConfig.html#data_handling.schema.types.IOConfig.options">(data_handling.schema.types.IOConfig attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.IOConfig.options">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.FileFormat.ORC">ORC (data_handling.schema.FileFormat attribute)</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.schema.types.FileFormat.html#data_handling.schema.types.FileFormat.ORC">(data_handling.schema.types.FileFormat attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.FileFormat.ORC">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.DomainConfigModel.html#data_handling.schema.config_models.DomainConfigModel.outputs">outputs (data_handling.schema.config_models.DomainConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.DomainConfigModel.outputs">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.DomainConfig.outputs">(data_handling.schema.DomainConfig attribute)</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.types.DomainConfig.html#data_handling.schema.types.DomainConfig.outputs">(data_handling.schema.types.DomainConfig attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.DomainConfig.outputs">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.DomainConfigModel.html#data_handling.schema.config_models.DomainConfigModel.params">params (data_handling.schema.config_models.DomainConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.DomainConfigModel.params">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.DomainConfig.params">(data_handling.schema.DomainConfig attribute)</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.types.DomainConfig.html#data_handling.schema.types.DomainConfig.params">(data_handling.schema.types.DomainConfig attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.DomainConfig.params">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.FileFormat.PARQUET">PARQUET (data_handling.schema.FileFormat attribute)</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.schema.types.FileFormat.html#data_handling.schema.types.FileFormat.PARQUET">(data_handling.schema.types.FileFormat attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.FileFormat.PARQUET">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/data_handling.core.errors.html#data_handling.core.errors.IOErrorBase.path">path (data_handling.core.errors.IOErrorBase attribute)</a>
+
+      <ul>
+        <li><a href="api/_generated/data_handling.core.html#data_handling.core.IOErrorBase.path">(data_handling.core.IOErrorBase attribute)</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.config_models.IOConfigModel.html#data_handling.schema.config_models.IOConfigModel.path">(data_handling.schema.config_models.IOConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.IOConfigModel.path">[1]</a>
+</li>
+        <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.IOConfig.path">(data_handling.schema.IOConfig attribute)</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.types.IOConfig.html#data_handling.schema.types.IOConfig.path">(data_handling.schema.types.IOConfig attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.IOConfig.path">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.FileFormat.PICKLE">PICKLE (data_handling.schema.FileFormat attribute)</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.schema.types.FileFormat.html#data_handling.schema.types.FileFormat.PICKLE">(data_handling.schema.types.FileFormat attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.FileFormat.PICKLE">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/data_handling.core.html#data_handling.core.read_dataframe">read_dataframe() (in module data_handling.core)</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.core.io.read_dataframe.html#data_handling.core.io.read_dataframe">(in module data_handling.core.io)</a>, <a href="api/_generated/data_handling.core.io.html#data_handling.core.io.read_dataframe">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/data_handling.core.html#data_handling.core.register_reader">register_reader() (in module data_handling.core)</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.core.io.register_reader.html#data_handling.core.io.register_reader">(in module data_handling.core.io)</a>, <a href="api/_generated/data_handling.core.io.html#data_handling.core.io.register_reader">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/data_handling.core.html#data_handling.core.register_writer">register_writer() (in module data_handling.core)</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.core.io.register_writer.html#data_handling.core.io.register_writer">(in module data_handling.core.io)</a>, <a href="api/_generated/data_handling.core.io.html#data_handling.core.io.register_writer">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/_members/data_handling.domains.example_domain.pipeline.run.html#data_handling.domains.example_domain.pipeline.run">run() (in module data_handling.domains.example_domain.pipeline)</a>, <a href="api/_generated/data_handling.domains.example_domain.pipeline.html#data_handling.domains.example_domain.pipeline.run">[1]</a>
+</li>
+      <li><a href="api/_generated/data_handling.core.html#data_handling.core.run_domains">run_domains() (in module data_handling.core)</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.core.orchestrator.run_domains.html#data_handling.core.orchestrator.run_domains">(in module data_handling.core.orchestrator)</a>, <a href="api/_generated/data_handling.core.orchestrator.html#data_handling.core.orchestrator.run_domains">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.DomainConfigModel.html#data_handling.schema.config_models.DomainConfigModel.schedule">schedule (data_handling.schema.config_models.DomainConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.DomainConfigModel.schedule">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.DomainConfig.schedule">(data_handling.schema.DomainConfig attribute)</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.types.DomainConfig.html#data_handling.schema.types.DomainConfig.schedule">(data_handling.schema.types.DomainConfig attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.DomainConfig.schedule">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/_members/data_handling.schema.types.ScheduleConfig.html#data_handling.schema.types.ScheduleConfig">ScheduleConfig (class in data_handling.schema.types)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.ScheduleConfig">[1]</a>
+</li>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.ScheduleConfigModel.html#data_handling.schema.config_models.ScheduleConfigModel">ScheduleConfigModel (class in data_handling.schema.config_models)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.ScheduleConfigModel">[1]</a>
+</li>
+      <li><a href="api/_generated/data_handling.core.errors.html#data_handling.core.errors.SchemaValidationError">SchemaValidationError</a>, <a href="api/_generated/data_handling.core.html#data_handling.core.SchemaValidationError">[1]</a>
+</li>
+      <li><a href="api/_generated/_members/data_handling.schema.data_contracts.SilverCustomersSchema.html#data_handling.schema.data_contracts.SilverCustomersSchema">SilverCustomersSchema (class in data_handling.schema.data_contracts)</a>, <a href="api/_generated/data_handling.schema.data_contracts.html#data_handling.schema.data_contracts.SilverCustomersSchema">[1]</a>
+</li>
+      <li><a href="api/_generated/_members/data_handling.schema.data_contracts.SilverCustomersSchema.html#data_handling.schema.data_contracts.SilverCustomersSchema.Config">SilverCustomersSchema.Config (class in data_handling.schema.data_contracts)</a>, <a href="api/_generated/data_handling.schema.data_contracts.html#data_handling.schema.data_contracts.SilverCustomersSchema.Config">[1]</a>
+</li>
+      <li><a href="api/_generated/_members/data_handling.schema.data_contracts.SilverTransactionsSchema.html#data_handling.schema.data_contracts.SilverTransactionsSchema">SilverTransactionsSchema (class in data_handling.schema.data_contracts)</a>, <a href="api/_generated/data_handling.schema.data_contracts.html#data_handling.schema.data_contracts.SilverTransactionsSchema">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/_members/data_handling.schema.data_contracts.SilverTransactionsSchema.html#data_handling.schema.data_contracts.SilverTransactionsSchema.Config">SilverTransactionsSchema.Config (class in data_handling.schema.data_contracts)</a>, <a href="api/_generated/data_handling.schema.data_contracts.html#data_handling.schema.data_contracts.SilverTransactionsSchema.Config">[1]</a>
+</li>
+      <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.FileFormat.SQL">SQL (data_handling.schema.FileFormat attribute)</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.schema.types.FileFormat.html#data_handling.schema.types.FileFormat.SQL">(data_handling.schema.types.FileFormat attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.FileFormat.SQL">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.IOConfigModel.html#data_handling.schema.config_models.IOConfigModel.storage_options">storage_options (data_handling.schema.config_models.IOConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.IOConfigModel.storage_options">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.IOConfig.storage_options">(data_handling.schema.IOConfig attribute)</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.types.IOConfig.html#data_handling.schema.types.IOConfig.storage_options">(data_handling.schema.types.IOConfig attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.IOConfig.storage_options">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/_members/data_handling.domains.example_domain.schemas.GoldMetricsSchema.html#data_handling.domains.example_domain.schemas.GoldMetricsSchema.Config.strict">strict (data_handling.domains.example_domain.schemas.GoldMetricsSchema.Config attribute)</a>, <a href="api/_generated/data_handling.domains.example_domain.schemas.html#data_handling.domains.example_domain.schemas.GoldMetricsSchema.Config.strict">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.domains.example_domain.schemas.GoldScoresSchema.html#data_handling.domains.example_domain.schemas.GoldScoresSchema.Config.strict">(data_handling.domains.example_domain.schemas.GoldScoresSchema.Config attribute)</a>, <a href="api/_generated/data_handling.domains.example_domain.schemas.html#data_handling.domains.example_domain.schemas.GoldScoresSchema.Config.strict">[1]</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.data_contracts.SilverCustomersSchema.html#data_handling.schema.data_contracts.SilverCustomersSchema.Config.strict">(data_handling.schema.data_contracts.SilverCustomersSchema.Config attribute)</a>, <a href="api/_generated/data_handling.schema.data_contracts.html#data_handling.schema.data_contracts.SilverCustomersSchema.Config.strict">[1]</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.data_contracts.SilverTransactionsSchema.html#data_handling.schema.data_contracts.SilverTransactionsSchema.Config.strict">(data_handling.schema.data_contracts.SilverTransactionsSchema.Config attribute)</a>, <a href="api/_generated/data_handling.schema.data_contracts.html#data_handling.schema.data_contracts.SilverTransactionsSchema.Config.strict">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.DomainConfigModel.html#data_handling.schema.config_models.DomainConfigModel.tags">tags (data_handling.schema.config_models.DomainConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.DomainConfigModel.tags">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.DomainConfig.tags">(data_handling.schema.DomainConfig attribute)</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.types.DomainConfig.html#data_handling.schema.types.DomainConfig.tags">(data_handling.schema.types.DomainConfig attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.DomainConfig.tags">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.LoggingConfigModel.html#data_handling.schema.config_models.LoggingConfigModel.to_console">to_console (data_handling.schema.config_models.LoggingConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.LoggingConfigModel.to_console">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.LoggingConfig.to_console">(data_handling.schema.LoggingConfig attribute)</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.types.LoggingConfig.html#data_handling.schema.types.LoggingConfig.to_console">(data_handling.schema.types.LoggingConfig attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.LoggingConfig.to_console">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.DomainConfigModel.html#data_handling.schema.config_models.DomainConfigModel.to_dataclass">to_dataclass() (data_handling.schema.config_models.DomainConfigModel method)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.DomainConfigModel.to_dataclass">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.schema.config_models.GlobalConfigModel.html#data_handling.schema.config_models.GlobalConfigModel.to_dataclass">(data_handling.schema.config_models.GlobalConfigModel method)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.GlobalConfigModel.to_dataclass">[1]</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.config_models.IOConfigModel.html#data_handling.schema.config_models.IOConfigModel.to_dataclass">(data_handling.schema.config_models.IOConfigModel method)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.IOConfigModel.to_dataclass">[1]</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.config_models.LoggingConfigModel.html#data_handling.schema.config_models.LoggingConfigModel.to_dataclass">(data_handling.schema.config_models.LoggingConfigModel method)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.LoggingConfigModel.to_dataclass">[1]</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.config_models.ScheduleConfigModel.html#data_handling.schema.config_models.ScheduleConfigModel.to_dataclass">(data_handling.schema.config_models.ScheduleConfigModel method)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.ScheduleConfigModel.to_dataclass">[1]</a>
+</li>
+        <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.GlobalConfigModel.to_dataclass">(data_handling.schema.GlobalConfigModel method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/_members/data_handling.schema.config_models.LoggingConfigModel.html#data_handling.schema.config_models.LoggingConfigModel.to_file">to_file (data_handling.schema.config_models.LoggingConfigModel attribute)</a>, <a href="api/_generated/data_handling.schema.config_models.html#data_handling.schema.config_models.LoggingConfigModel.to_file">[1]</a>
+
+      <ul>
+        <li><a href="api/_generated/data_handling.schema.html#data_handling.schema.LoggingConfig.to_file">(data_handling.schema.LoggingConfig attribute)</a>
+</li>
+        <li><a href="api/_generated/_members/data_handling.schema.types.LoggingConfig.html#data_handling.schema.types.LoggingConfig.to_file">(data_handling.schema.types.LoggingConfig attribute)</a>, <a href="api/_generated/data_handling.schema.types.html#data_handling.schema.types.LoggingConfig.to_file">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/data_handling.core.errors.html#data_handling.core.errors.UnsupportedFormatError">UnsupportedFormatError</a>, <a href="api/_generated/data_handling.core.html#data_handling.core.UnsupportedFormatError">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/_members/data_handling.domains.example_domain.schemas.GoldMetricsSchema.html#data_handling.domains.example_domain.schemas.GoldMetricsSchema.value">value (data_handling.domains.example_domain.schemas.GoldMetricsSchema attribute)</a>, <a href="api/_generated/data_handling.domains.example_domain.schemas.html#data_handling.domains.example_domain.schemas.GoldMetricsSchema.value">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/_generated/data_handling.core.html#data_handling.core.write_dataframe">write_dataframe() (in module data_handling.core)</a>
+
+      <ul>
+        <li><a href="api/_generated/_members/data_handling.core.io.write_dataframe.html#data_handling.core.io.write_dataframe">(in module data_handling.core.io)</a>, <a href="api/_generated/data_handling.core.io.html#data_handling.core.io.write_dataframe">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2026, Anders Henriksen.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

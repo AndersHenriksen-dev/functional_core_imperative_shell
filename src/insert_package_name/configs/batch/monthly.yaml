@@ -1,0 +1,6 @@
+# Monthly batch run configuration
+# List of domain names to execute in the monthly batch
+domains_to_run: []
+
+# Override active_tags to target domains tagged as "monthly"
+active_tags: ["monthly"]

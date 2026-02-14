@@ -1,0 +1,5 @@
+2026-02-14 07:21:36 INFO [-] data_handling.core.logging:78 - Logging to C:\Users\ander\Desktop\programming\group funding\data_handling_functional/logs\run_2026-02-14_07.21.36.log
+2026-02-14 07:21:36 INFO [-] orchestrator:20 - Starting orchestration
+2026-02-14 07:21:36 INFO [example_domain] orchestrator:52 - Starting domain
+2026-02-14 07:21:36 INFO [Example Domain] data_handling.domains.example_domain.pipeline:24 - Wrote 4 scores and 2 metrics
+2026-02-14 07:21:36 INFO [example_domain] orchestrator:61 - Completed domain

@@ -1,0 +1,38 @@
+logging:
+  level: INFO
+  log_dir: ${hydra:runtime.cwd}/logs
+  to_console: true
+  to_file: true
+inputs:
+  customers:
+    path: ${base_input_path}/customers.csv
+    format: csv
+  transactions:
+    path: ${base_input_path}/transactions.csv
+    format: csv
+domains:
+  example_domain:
+    schedule:
+      enabled: false
+    name: Example Domain
+    enabled: true
+    tags:
+    - daily
+    inputs:
+    - customers
+    - transactions
+    params:
+      score_threshold: 0.7
+    outputs:
+      scores:
+        path: ${base_output_path}/example_domain/scores.csv
+        format: csv
+      metrics:
+        path: ${base_output_path}/example_domain/metrics.csv
+        format: csv
+env: dev
+active_domains: []
+active_tags: []
+domains_to_run: []
+base_input_path: ${hydra:runtime.cwd}/data/silver
+base_output_path: ${hydra:runtime.cwd}/data/gold

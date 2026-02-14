@@ -1,0 +1,266 @@
+# Examples
+
+This page collects short examples you can copy into your own configs and tests.
+
+## Minimal run with Hydra overrides
+
+Use this when you want a single domain executed with modified paths.
+
+```bash
+python -m data_handling.main \
+  active_domains=[example_domain] \
+  domains.example_domain.inputs.customers.path="data/silver/customers.csv" \
+  domains.example_domain.outputs.scores.path="outputs/scores.csv"
+```
+
+## Register a custom reader
+
+Add a reader for a new file format and reuse the same IO config shape.
+
+```python
+from __future__ import annotations
+
+import pandas as pd
+
+from data_handling.core import register_reader
+from data_handling.schema.types import FileFormat, IOConfig
+
+
+def read_tsv(cfg: IOConfig) -> pd.DataFrame:
+    return pd.read_csv(cfg.path, sep="\t", **cfg.options)
+
+
+register_reader(FileFormat.CSV, read_tsv)
+```
+
+## Inline domain run
+
+This pattern is helpful for tests that want to call a domain pipeline directly.
+
+```python
+from __future__ import annotations
+
+from data_handling.domains.example_domain.pipeline import run
+from data_handling.schema.types import DomainConfig
+
+
+def run_domain(cfg: DomainConfig) -> None:
+    run(cfg)
+```
+
+## Cloud storage examples
+
+### Read from S3, write locally
+
+```yaml
+# configs/domains/s3_to_local.yaml
+s3_domain:
+  name: "S3 to Local"
+  enabled: true
+  inputs:
+    raw_data:
+      path: "s3://my-bucket/raw/data.parquet"
+      format: parquet
+      storage_options:
+        client_kwargs:
+          region_name: "us-east-1"
+  outputs:
+    processed:
+      path: "data/gold/processed.parquet"
+      format: parquet
+```
+
+Run with:
+```bash
+python -m data_handling.main active_domains=[s3_domain]
+```
+
+### Read from MSSQL, write to S3
+
+```yaml
+# configs/domains/mssql_to_s3.yaml
+data_export:
+  name: "MSSQL to S3"
+  enabled: true
+  inputs:
+    sales_orders:
+      path: "mssql+pyodbc://user:pass@mssql-server/warehouse?driver=ODBC+Driver+17+for+SQL+Server"
+      format: sql
+      options:
+        query: |
+          SELECT order_id, customer_id, amount, order_date
+          FROM sales.orders
+          WHERE order_date >= DATEADD(day, -30, CAST(GETDATE() AS DATE))
+  outputs:
+    cloud_backup:
+      path: "s3://my-bucket/backups/orders_${now:%Y-%m-%d}.parquet"
+      format: parquet
+      storage_options:
+        client_kwargs:
+          region_name: "us-east-1"
+```
+
+### Databricks Unity Catalog pipeline
+
+```yaml
+# configs/domains/databricks_pipeline.yaml
+databricks_etl:
+  name: "Databricks ETL"
+  enabled: true
+  inputs:
+    silver_customers:
+      path: "databricks:///?host=${oc.env:DATABRICKS_HOST}&http_path=${oc.env:DATABRICKS_HTTP_PATH}&token=${oc.env:DATABRICKS_TOKEN}"
+      format: sql
+      options:
+        query: "SELECT * FROM main.silver.customers WHERE status = 'active'"
+    silver_orders:
+      path: "databricks:///?host=${oc.env:DATABRICKS_HOST}&http_path=${oc.env:DATABRICKS_HTTP_PATH}&token=${oc.env:DATABRICKS_TOKEN}"
+      format: sql
+      options:
+        query: "SELECT * FROM main.silver.orders WHERE year = year(now())"
+  outputs:
+    gold_customer_metrics:
+      path: "databricks:///?host=${oc.env:DATABRICKS_HOST}&http_path=${oc.env:DATABRICKS_HTTP_PATH}&token=${oc.env:DATABRICKS_TOKEN}"
+      format: sql
+      options:
+        table: "main.gold.customer_metrics"
+        if_exists: "replace"
+```
+
+### Environment-based path configuration
+
+For different environments, override base paths:
+
+```bash
+# Development: local files
+python -m data_handling.main \
+  base_input_path="data/silver" \
+  base_output_path="data/gold"
+
+# Staging: S3
+python -m data_handling.main \
+  base_input_path="s3://staging-bucket/silver" \
+  base_output_path="s3://staging-bucket/gold"
+
+# Production: S3 with explicit credentials
+python -m data_handling.main \
+  base_input_path="s3://prod-bucket/silver" \
+  base_output_path="s3://prod-bucket/gold"
+```
+
+Or create environment-specific config files:
+
+```yaml
+# configs/config_prod.yaml
+defaults:
+  - config
+  - _self_
+
+base_input_path: "s3://prod-bucket/silver"
+base_output_path: "s3://prod-bucket/gold"
+
+domains:
+  example_domain:
+    inputs:
+      customers:
+        storage_options:
+          client_kwargs:
+            region_name: "us-east-1"
+```
+
+Run with:
+```bash
+python -m data_handling.main -cn config_prod
+```
+
+## Format options examples
+
+For CSV, Parquet, JSON, SQL, and other formats, see the dedicated IO formats guide:
+
+- [IO formats reference](io_formats.md)
+
+## Scheduling examples
+
+### Daily scheduled domain
+
+```yaml
+# configs/domains/daily_etl.yaml
+daily_etl:
+  name: "Daily ETL"
+  enabled: true
+  schedule:
+    enabled: true
+    interval: "daily"
+    hour: 2  # 2:00 AM
+    minute: 0
+  inputs:
+    data:
+      path: ${base_input_path}/data.csv
+      format: csv
+  outputs:
+    result:
+      path: ${base_output_path}/result.csv
+      format: csv
+```
+
+### Weekly scheduled domain
+
+```yaml
+# configs/domains/weekly_report.yaml
+weekly_report:
+  name: "Weekly Report"
+  enabled: true
+  schedule:
+    enabled: true
+    interval: "weekly"
+    day_of_week: "monday"  # Run every Monday
+    hour: 8  # 8:00 AM
+    minute: 0
+  inputs: { ... }
+  outputs: { ... }
+```
+
+### Monthly scheduled domain
+
+```yaml
+# configs/domains/monthly_summary.yaml
+monthly_summary:
+  name: "Monthly Summary"
+  enabled: true
+  schedule:
+    enabled: true
+    interval: "monthly"
+    day_of_month: 1  # Run on the 1st of each month
+    hour: 6
+    minute: 0
+  inputs: { ... }
+  outputs: { ... }
+```
+
+### Advanced: Cron expression
+
+For complex schedules, use cron expressions:
+
+```yaml
+# configs/domains/complex_schedule.yaml
+business_hours_check:
+  name: "Business Hours Check"
+  enabled: true
+  schedule:
+    enabled: true
+    cron: "0 */2 * * 1-5"  # Every 2 hours on weekdays
+  inputs: { ... }
+  outputs: { ... }
+```
+
+### Run multiple scheduled domains
+
+Start the scheduler with all configured domains:
+
+```bash
+python -m data_handling.scheduler_main
+```
+
+This will execute all domains that have `schedule.enabled: true` on their respective schedules.
+
+For detailed scheduling guide, see [Scheduling Guide](scheduling.md).
