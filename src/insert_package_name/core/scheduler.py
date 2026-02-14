@@ -8,7 +8,7 @@ from typing import TYPE_CHECKING
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
 
-from insert_package_name.core.orchestrator import run_domains
+from insert_package_name.core.orchestrator import run_domains_safe
 from insert_package_name.schema.types import GlobalConfig
 
 if TYPE_CHECKING:
@@ -65,7 +65,7 @@ def _get_cron_trigger(domain_name: str, global_cfg: GlobalConfig) -> CronTrigger
 
 
 def schedule_domains(global_cfg: GlobalConfig) -> BackgroundScheduler:
-    """Create and start a scheduler for configured domains.
+    """Create a scheduler for configured domains.
 
     Parameters
     ----------
@@ -90,9 +90,10 @@ def schedule_domains(global_cfg: GlobalConfig) -> BackgroundScheduler:
         trigger = _get_cron_trigger(domain_name, global_cfg)
         if trigger:
             scheduler.add_job(
-                run_domains,
+                run_domains_safe,
                 trigger,
-                args=[global_cfg, [domain_name]],
+                args=[global_cfg],
+                kwargs={"allowed_domains": {domain_name}},
                 id=f"domain_{domain_name}",
                 name=f"Domain: {global_cfg.domains[domain_name].name}",
                 misfire_grace_time=60,
@@ -105,7 +106,6 @@ def schedule_domains(global_cfg: GlobalConfig) -> BackgroundScheduler:
         msg = "No domains with schedules enabled found in config"
         raise ValueError(msg)
 
-    scheduler.start()
-    logger.info(f"Scheduler started with {scheduled_count} scheduled domain(s)")
+    logger.info(f"Scheduler configured with {scheduled_count} scheduled domain(s)")
 
     return scheduler

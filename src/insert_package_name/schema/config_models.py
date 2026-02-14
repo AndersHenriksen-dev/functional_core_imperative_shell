@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import Any
 
+from apscheduler.triggers.cron import CronTrigger
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from insert_package_name.schema.types import (
@@ -55,6 +56,60 @@ class ScheduleConfigModel(BaseModel):
     day_of_month: int = 1
     hour: int = 0
     minute: int = 0
+
+    @model_validator(mode="after")
+    def validate_schedule(self) -> "ScheduleConfigModel":
+        """Validate schedule settings and cron syntax."""
+        if not self.enabled:
+            return self
+
+        has_cron = bool(self.cron)
+        has_interval = bool(self.interval)
+
+        if has_cron and has_interval:
+            raise ValueError("Provide either 'cron' or 'interval', not both.")
+        if not has_cron and not has_interval:
+            raise ValueError("Schedule enabled requires 'cron' or 'interval'.")
+
+        if has_cron:
+            try:
+                CronTrigger.from_crontab(self.cron)
+            except ValueError as exc:
+                raise ValueError(f"Invalid cron expression: {self.cron}") from exc
+            return self
+
+        allowed_intervals = {"daily", "weekly", "monthly"}
+        if self.interval not in allowed_intervals:
+            allowed_list = ", ".join(sorted(allowed_intervals))
+            raise ValueError(f"Invalid interval '{self.interval}'. Use one of: {allowed_list}.")
+
+        if not 0 <= self.hour <= 23:
+            raise ValueError("hour must be between 0 and 23.")
+        if not 0 <= self.minute <= 59:
+            raise ValueError("minute must be between 0 and 59.")
+
+        if self.interval == "weekly":
+            valid_days = {
+                "monday",
+                "tuesday",
+                "wednesday",
+                "thursday",
+                "friday",
+                "saturday",
+                "sunday",
+            }
+            day = self.day_of_week.lower()
+            if day not in valid_days:
+                valid_list = ", ".join(sorted(valid_days))
+                raise ValueError(
+                    f"Invalid day_of_week '{self.day_of_week}'. Use one of: {valid_list}."
+                )
+            self.day_of_week = day
+
+        if self.interval == "monthly" and not 1 <= self.day_of_month <= 31:
+            raise ValueError("day_of_month must be between 1 and 31.")
+
+        return self
 
     def to_dataclass(self) -> ScheduleConfig:
         """Convert the validated model to a dataclass.

@@ -1,0 +1,126 @@
+# --------------------------------------
+# Pre-commit configuration
+# --------------------------------------
+# Documentation:
+#   https://pre-commit.com
+#   https://pre-commit.com/hooks.html
+# --------------------------------------
+
+repos:
+  # --------------------------------------
+  # Built-in pre-commit hooks
+  # --------------------------------------
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: no-commit-to-branch
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-xml
+      - id: detect-private-key
+      - id: forbid-new-submodules
+      - id: debug-statements
+      - id: name-tests-test  # enforces tests start with test_
+      - id: check-added-large-files
+
+  # --------------------------------------
+  # Commit message linting
+  # --------------------------------------
+  - repo: https://github.com/jorisroovers/gitlint
+    rev: v0.19.0
+    hooks:
+      - id: gitlint
+        stages: [commit-msg]
+        args: ["--contrib=conventional"]
+
+  # Optional: even stricter commit message checks
+  # (Keeps the gitlint one—this adds prefix enforcement)
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v3.17.0
+    hooks:
+      - id: commitizen
+        stages: [commit-msg]
+        additional_dependencies: []
+        args:
+          - "--allow-empty"
+          - "--commit-msg-file"
+          - ""
+
+  # --------------------------------------
+  # Python formatting
+  # --------------------------------------
+  - repo: https://github.com/psf/black
+    rev: 23.7.0
+    hooks:
+      - id: black
+        language_version: python3.13
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        language_version: python3.13
+
+  # ruff for linting + autofix
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.3.5
+    hooks:
+      - id: ruff
+        args: ["--fix"]
+
+  # --------------------------------------
+  # Python type checking
+  # --------------------------------------
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.8.0
+    hooks:
+      - id: mypy
+        additional_dependencies:
+          - "types-requests"
+          - "types-PyYAML"
+
+  # --------------------------------------
+  # Security (HIGH VALUE)
+  # --------------------------------------
+  - repo: https://github.com/pycqa/bandit
+    rev: 1.7.7
+    hooks:
+      - id: bandit
+        args: ["-ll", "-r", "validation_and_pipelines"]
+
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.4.0
+    hooks:
+      - id: detect-secrets
+
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.17.0
+    hooks:
+      - id: gitleaks
+        stages: [commit-msg, pre-commit]
+
+  # --------------------------------------
+  # Markdown / Docs (optional but recommended)
+  # --------------------------------------
+  - repo: https://github.com/markdownlint/markdownlint
+    rev: v0.12.0
+    hooks:
+      - id: markdownlint
+
+  - repo: https://github.com/prettier/prettier
+    rev: 3.1.0
+    hooks:
+      - id: prettier
+        types: [markdown]
+        additional_dependencies: ["prettier"]
+
+  # --------------------------------------
+  # TOML formatting (pyproject.toml)
+  # --------------------------------------
+  - repo: https://github.com/tamasfe/taplo
+    rev: v0.8.1
+    hooks:
+      - id: taplo-format
+      - id: taplo-lint
