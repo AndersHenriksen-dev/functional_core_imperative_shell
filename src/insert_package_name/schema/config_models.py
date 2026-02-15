@@ -324,6 +324,20 @@ class GlobalConfigModel(BaseModel):
                 domain.inputs = {name: global_inputs[name] for name in domain.inputs}
         return self
 
+    @model_validator(mode="after")
+    def validate_active_domains(self) -> GlobalConfigModel:
+        """Validate that active_domains only reference implemented domains."""
+        available = set(self.domains.keys())
+        invalid = [d for d in self.active_domains if d not in available]
+        if invalid:
+            invalid_list = ", ".join(invalid)
+            available_list = ", ".join(sorted(available)) if available else "none"
+            raise ValueError(
+                f"active_domains references unknown domains: {invalid_list}. "
+                f"Available domains: {available_list}."
+            )
+        return self
+
     def to_dataclass(self) -> GlobalConfig:
         """Convert the validated model to a dataclass.
 
