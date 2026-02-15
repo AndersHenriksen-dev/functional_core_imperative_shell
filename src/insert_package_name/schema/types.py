@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from enum import StrEnum
-from typing import Any
+from typing import Any, Literal
 
 
 class FileFormat(StrEnum):
@@ -19,6 +19,9 @@ class FileFormat(StrEnum):
     PICKLE = "pickle"
     SQL = "sql"
     DELTA = "delta"
+
+
+TagType = Literal["daily", "monthly", "all", None]
 
 
 @dataclass(frozen=True)
@@ -107,5 +110,5 @@ class GlobalConfig:
     execution: ExecutionConfig = field(default_factory=ExecutionConfig)
     inputs: dict[str, IOConfig] = field(default_factory=dict)
     active_domains: list[str] = field(default_factory=list)
-    active_tags: list[str] = field(default_factory=list)
+    active_tags: list[TagType] = field(default_factory=list)
     domains: dict[str, DomainConfig] = field(default_factory=dict)

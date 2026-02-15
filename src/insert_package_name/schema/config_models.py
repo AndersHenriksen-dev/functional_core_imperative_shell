@@ -17,6 +17,7 @@ from insert_package_name.schema.types import (
     ParallelExecutionConfig,
     ProcessExecutionConfig,
     ScheduleConfig,
+    TagType,
     ThreadExecutionConfig,
 )
 
@@ -309,7 +310,7 @@ class GlobalConfigModel(BaseModel):
     execution: ExecutionConfigModel = Field(default_factory=ExecutionConfigModel)
     inputs: dict[str, IOConfigModel] = Field(default_factory=dict)
     active_domains: list[str] = Field(default_factory=list)
-    active_tags: list[str] = Field(default_factory=list)
+    active_tags: list[TagType] = Field(default_factory=list)
     domains: dict[str, DomainConfigModel] = Field(default_factory=dict)
 
     @model_validator(mode="after")

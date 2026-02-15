@@ -57,13 +57,13 @@ def example_domain_config() -> DomainConfig:
 
 
 @pytest.fixture
-def global_config_factory() -> Callable[[dict[str, DomainConfig], list[str], list[str]], GlobalConfig]:
+def global_config_factory() -> Callable[[dict[str, DomainConfig], list[str], list], GlobalConfig]:
     """Build GlobalConfig values for tests."""
 
     def _factory(
         domains: dict[str, DomainConfig],
         active_domains: list[str] | None = None,
-        active_tags: list[str] | None = None,
+        active_tags: list | None = None,
     ) -> GlobalConfig:
         """Create a GlobalConfig using the provided domain settings."""
         return GlobalConfig(
