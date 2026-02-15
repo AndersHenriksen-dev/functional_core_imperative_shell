@@ -32,7 +32,11 @@ dependencies = [
     "openpyxl>=3.1",
     "pyodbc>=5.3.0",
     "apscheduler>=3.10",
+    "click>=8.0",
 ]
+[project.scripts]
+dataflow = "insert_package_name.cli:cli"
+
 [dependency-groups]
 dev = [
     "coverage",

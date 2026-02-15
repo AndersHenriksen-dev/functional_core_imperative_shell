@@ -8,38 +8,155 @@ This package standardizes how data is read, validated, and written across domain
 
 ## Features
 
-- Registry-based IO for CSV, Parquet, JSON, Excel, Feather, ORC, Pickle, SQL, and Delta.
-- Safe-loading Hydra configs with error isolation: broken domain configs don't crash the batch.
-- Composable configuration with shared inputs and schedule presets (DRY).
-- Domain pipelines with clean separation between orchestration and business logic.
-- Pydantic validation for configuration with clear errors.
-- **Automatic domain scheduling**: Run pipelines daily, weekly, or monthly with APScheduler.
+- **Registry-based IO**: Support for CSV, Parquet, JSON, Excel, Feather, ORC, Pickle, SQL, and Delta formats
+- **Safe-loading Hydra configs**: Broken domain configs don't crash the entire batch
+- **Composable configuration**: Shared inputs and schedule presets (DRY principle)
+- **Domain pipelines**: Clean separation between orchestration and business logic
+- **Pydantic validation**: Clear error messages for configuration issues
+- **Automatic domain scheduling**: Run pipelines daily, weekly, or monthly with APScheduler
+- **User-friendly CLI**: Simple commands for common operations
+- **Domain templates**: Automated creation of new domains with boilerplate code
+- **Programmatic API**: Use the package as a library in your applications
 
-## Installation
+## Quickstart
+
+### Installation
 
 1. Clone the repository:
     ```bash
     git clone <<repository_url>>
     cd functional_core_imperative_shell
     ```
+
 2. Install dependencies with `uv`:
     ```bash
     uv sync
     ```
-3. Optional: install pre-commit hooks:
+
+3. Install the package in development mode:
+    ```bash
+    pip install -e .
+    ```
+
+4. Optional: install pre-commit hooks:
     ```bash
     pre-commit install --hook-type pre-commit --hook-type commit-msg
     ```
 
-## Quickstart
+### Command Line Interface
 
-Run the default configuration (example domain):
+The package includes a user-friendly CLI for common operations:
+
+```bash
+# List available domains
+python -m insert_package_name.cli list
+
+# Run all domains
+python -m insert_package_name.cli run
+
+# Run specific domains (when implemented)
+python -m insert_package_name.cli run --domain example_domain
+
+# Validate configuration
+python -m insert_package_name.cli validate
+
+# Show configuration
+python -m insert_package_name.cli config
+
+# Create a new domain
+python -m insert_package_name.cli create-domain my_new_domain
+```
+
+### Programmatic API
+
+Use the package programmatically in your applications:
+
+```python
+from insert_package_name.api import DataFlow, run_domains, list_domains
+
+# Simple usage
+run_domains()  # Run all domains
+
+# Using the DataFlow class
+df = DataFlow()
+domains = df.domains()
+df.with_domains(["example_domain"]).run()
+
+# Convenience functions
+domains = list_domains()
+is_valid = df.validate()
+```
+
+### Creating a New Domain
+
+1. Create a new domain with the CLI:
+    ```bash
+    python -m insert_package_name.cli create-domain my_domain
+    ```
+
+2. Customize the generated files:
+   - `domains/my_domain/schemas.py`: Define your data schemas
+   - `domains/my_domain/ops.py`: Implement your business logic
+   - `domains/my_domain/pipeline.py`: Orchestrate your operations
+   - `configs/domains/my_domain.yaml`: Configure inputs, outputs, and parameters
+
+3. Test your domain:
+    ```bash
+    python -m insert_package_name.main
+    ```
+
+### Legacy Usage
+
+For advanced usage with Hydra configuration overrides:
 
 ```bash
 python -m insert_package_name.main
 ```
 
 The example config reads from [data/silver](data/silver) and writes to [data/gold](data/gold). Adjust paths in [configs/config.yaml](configs/config.yaml) or override via Hydra.
+
+## API Reference
+
+### Command Line Interface
+
+```bash
+python -m insert_package_name.cli [OPTIONS] COMMAND [ARGS]
+
+Options:
+  --config-path TEXT  Path to config directory
+  -v, --verbose       Enable verbose logging
+  --help              Show this message and exit.
+
+Commands:
+  config         Show current configuration.
+  create-domain  Create a new domain with template files.
+  list           List available domains.
+  run            Run data pipelines.
+  validate       Validate configuration without running.
+```
+
+### Programmatic API
+
+#### DataFlow Class
+
+```python
+class DataFlow:
+    def __init__(config_path=None)
+    def domains() -> list[str]
+    def with_domains(domains) -> DataFlow
+    def with_config_overrides(overrides) -> DataFlow
+    def run(domains=None) -> None
+    def validate() -> bool
+    def get_config() -> dict
+```
+
+#### Convenience Functions
+
+```python
+def run_domains(domains=None, config_path=None) -> None
+def list_domains(config_path=None) -> list[str]
+def validate_config(config_path=None) -> bool
+```
 
 ## Docker
 
@@ -343,6 +460,59 @@ Run tests:
 ```bash
 python -m pytest -q
 ```
+
+## Development
+
+### Running Tests
+
+```bash
+# Run all tests
+pytest
+
+# Run specific test modules
+pytest tests/unit/test_cli.py
+pytest tests/unit/test_api.py
+pytest tests/unit/test_create_domain.py
+
+# Run with coverage
+pytest --cov=insert_package_name
+
+# Run integration tests
+pytest tests/integration/
+```
+
+### Code Quality
+
+The project uses several tools for code quality:
+
+- **ruff**: Linting and code formatting
+- **mypy**: Type checking
+- **bandit**: Security scanning
+
+```bash
+# Run all quality checks
+ruff check src/
+mypy src/
+bandit -r src/
+```
+
+### Contributing
+
+1. Create a new domain for your feature:
+    ```bash
+    python -m insert_package_name.cli create-domain my_feature
+    ```
+
+2. Implement your business logic in the generated files
+
+3. Add tests for your new functionality
+
+4. Run the test suite:
+    ```bash
+    pytest
+    ```
+
+5. Submit a pull request
 
 ## License
 
