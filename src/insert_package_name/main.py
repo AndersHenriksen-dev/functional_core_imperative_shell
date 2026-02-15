@@ -1,6 +1,7 @@
 """Hydra entry point for orchestrating domains."""
 
 from __future__ import annotations
+
 import sys
 import traceback
 from pathlib import Path
@@ -11,30 +12,32 @@ from hydra import compose, initialize_config_dir
 from hydra.core.global_hydra import GlobalHydra
 from omegaconf import DictConfig, OmegaConf
 
+import insert_package_name.configs
 from insert_package_name.core.logging import configure_logging, get_logger
 from insert_package_name.core.orchestrator import run_domains_safe
 from insert_package_name.core.validation import load_and_validate_config
-import insert_package_name.configs
 
 # Custom Resolvers
 OmegaConf.register_new_resolver("min", lambda x, y: min(int(x), int(y)), replace=True)
 OmegaConf.register_new_resolver("div_round", lambda x, y: max(1, int(x) // int(y)), replace=True)
 
+
 def get_config_directory() -> str:
     """Resolve the absolute path to the configuration directory."""
     return str(Path(insert_package_name.configs.__file__).parent)
 
+
 def load_domain_configs(domains_to_load: list[str], cli_overrides: list[str], logger: Any):
-    """Iteratively load and validate configs for a list of domains."""
+    """Load and validate configs iteratively for a list of domains."""
     valid_configs = []
     failed_domains = []
 
     for domain_name in domains_to_load:
         try:
-            domain_overrides = cli_overrides + [f"+domain={domain_name}"]
+            domain_overrides = [*cli_overrides, f"+domain={domain_name}"]
             domain_cfg = compose(config_name="config", overrides=domain_overrides)
             validated = load_and_validate_config(domain_cfg)
-            
+
             if domain_name in validated.domains:
                 valid_configs.append((domain_name, validated))
                 logger.info(f"[OK] Successfully loaded: {domain_name}")
@@ -45,7 +48,7 @@ def load_domain_configs(domains_to_load: list[str], cli_overrides: list[str], lo
             logger.error(f"[FAIL] Failed to load '{domain_name}': {exc}")
             logger.debug(traceback.format_exc())
             failed_domains.append(domain_name)
-            
+
     return valid_configs, failed_domains
 
 

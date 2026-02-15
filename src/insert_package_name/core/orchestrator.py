@@ -5,8 +5,8 @@ from __future__ import annotations
 import importlib
 import math
 import os
-from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 from collections.abc import Iterable
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 
 from insert_package_name.core.errors import (
     DataHandlingError,
@@ -52,7 +52,9 @@ def _load_domain_runner(domain_name: str):
     return module.run
 
 
-def _iter_selected_domains(cfg: GlobalConfig, allowed_domains: set[str] | None = None) -> Iterable[tuple[str, DomainConfig]]:
+def _iter_selected_domains(
+    cfg: GlobalConfig, allowed_domains: set[str] | None = None
+) -> Iterable[tuple[str, DomainConfig]]:
     """Yield domain configs that match active filters.
 
     Parameters
@@ -165,7 +167,9 @@ def _execute_domain_chunk(domain_items: list[tuple[str, DomainConfig]], thread_w
             _execute_domain(domain_name, domain_cfg)
 
 
-def _chunk_domains(domain_items: list[tuple[str, DomainConfig]], max_chunks: int | None) -> list[list[tuple[str, DomainConfig]]]:
+def _chunk_domains(
+    domain_items: list[tuple[str, DomainConfig]], max_chunks: int | None
+) -> list[list[tuple[str, DomainConfig]]]:
     """Split domains into chunks for process workers."""
     if not domain_items:
         return []
@@ -201,7 +205,7 @@ def run_domains_safe(cfg: GlobalConfig, allowed_domains: set[str] | None = None)
         with ProcessPoolExecutor(max_workers=p_cfg.max_workers) as executor:
             for chunk in chunks:
                 executor.submit(_execute_domain_chunk, chunk, t_cfg.max_workers if t_cfg.enabled else None)
-    
+
     # Threading only
     elif t_cfg.enabled and len(selected) > 1:
         with ThreadPoolExecutor(max_workers=t_cfg.max_workers) as executor:
