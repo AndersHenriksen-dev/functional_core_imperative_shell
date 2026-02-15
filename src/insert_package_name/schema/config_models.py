@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, Literal
 
 from apscheduler.triggers.cron import CronTrigger
 from pydantic import BaseModel, ConfigDict, Field, model_validator
@@ -63,7 +63,7 @@ class ScheduleConfigModel(BaseModel):
     minute: int = 0
 
     @model_validator(mode="after")
-    def validate_schedule(self) -> "ScheduleConfigModel":
+    def validate_schedule(self) -> ScheduleConfigModel:
         """Validate schedule settings and cron syntax."""
         if not self.enabled:
             return self
@@ -106,9 +106,7 @@ class ScheduleConfigModel(BaseModel):
             day = self.day_of_week.lower()
             if day not in valid_days:
                 valid_list = ", ".join(sorted(valid_days))
-                raise ValueError(
-                    f"Invalid day_of_week '{self.day_of_week}'. Use one of: {valid_list}."
-                )
+                raise ValueError(f"Invalid day_of_week '{self.day_of_week}'. Use one of: {valid_list}.")
             self.day_of_week = day
 
         if self.interval == "monthly" and not 1 <= self.day_of_month <= 31:
@@ -207,7 +205,7 @@ class ThreadExecutionConfigModel(BaseModel):
     max_workers: int | None = None
 
     @model_validator(mode="after")
-    def validate_threads(self) -> "ThreadExecutionConfigModel":
+    def validate_threads(self) -> ThreadExecutionConfigModel:
         """Validate thread execution settings."""
         if self.max_workers is not None and self.max_workers < 1:
             raise ValueError("threads.max_workers must be >= 1 when provided.")
@@ -237,7 +235,7 @@ class ProcessExecutionConfigModel(BaseModel):
     max_workers: int | None = None
 
     @model_validator(mode="after")
-    def validate_processes(self) -> "ProcessExecutionConfigModel":
+    def validate_processes(self) -> ProcessExecutionConfigModel:
         """Validate process execution settings."""
         if self.max_workers is not None and self.max_workers < 1:
             raise ValueError("processes.max_workers must be >= 1 when provided.")
@@ -314,7 +312,7 @@ class GlobalConfigModel(BaseModel):
     domains: dict[str, DomainConfigModel] = Field(default_factory=dict)
 
     @model_validator(mode="after")
-    def resolve_domain_inputs(self) -> "GlobalConfigModel":
+    def resolve_domain_inputs(self) -> GlobalConfigModel:
         """Resolve domain input names to global input configs."""
         global_inputs = self.inputs
         for domain_name, domain in self.domains.items():
@@ -322,9 +320,7 @@ class GlobalConfigModel(BaseModel):
                 missing = [name for name in domain.inputs if name not in global_inputs]
                 if missing:
                     missing_list = ", ".join(missing)
-                    raise ValueError(
-                        f"Domain '{domain_name}' references unknown inputs: {missing_list}"
-                    )
+                    raise ValueError(f"Domain '{domain_name}' references unknown inputs: {missing_list}")
                 domain.inputs = {name: global_inputs[name] for name in domain.inputs}
         return self
 

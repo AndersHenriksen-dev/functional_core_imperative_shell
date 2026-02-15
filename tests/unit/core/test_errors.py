@@ -6,6 +6,7 @@ from insert_package_name.core.errors import (
     ConfigValidationError,
     DomainExecutionError,
     IOReadError,
+    MissingIOKeyError,
     OptionalDependencyError,
     SchemaValidationError,
 )
@@ -37,3 +38,17 @@ def test_io_error_str() -> None:
 def test_optional_dependency_error_str() -> None:
     error = OptionalDependencyError(dependency="deltalake", feature="Delta IO")
     assert "deltalake" in str(error)
+
+
+def test_missing_io_key_error_str() -> None:
+    error = MissingIOKeyError(
+        domain="example",
+        key="transactions",
+        available_inputs=["customers"],
+        available_outputs=["scores", "metrics"],
+    )
+    message = str(error)
+    assert "unknown IO key" in message
+    assert "transactions" in message
+    assert "customers" in message
+    assert "scores" in message

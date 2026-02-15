@@ -13,6 +13,7 @@ from insert_package_name.core.errors import (
     DomainExecutionError,
     DomainInterfaceError,
     DomainNotFoundError,
+    MissingIOKeyError,
 )
 from insert_package_name.core.logging import get_domain_logger
 from insert_package_name.schema.types import DomainConfig, GlobalConfig
@@ -81,6 +82,17 @@ def _iter_selected_domains(cfg: GlobalConfig, allowed_domains: set[str] | None =
     return selected
 
 
+def _missing_io_key_error(domain_name: str, domain_cfg: DomainConfig, exc: KeyError) -> MissingIOKeyError:
+    """Create a MissingIOKeyError with context from a KeyError."""
+    key = exc.args[0] if exc.args else "<unknown>"
+    return MissingIOKeyError(
+        domain=domain_name,
+        key=str(key),
+        available_inputs=sorted(domain_cfg.inputs.keys()),
+        available_outputs=sorted(domain_cfg.outputs.keys()),
+    )
+
+
 def run_domains(cfg: GlobalConfig) -> None:
     """Run selected domains based on config filters.
 
@@ -110,6 +122,8 @@ def run_domains(cfg: GlobalConfig) -> None:
             runner(domain_cfg)
         except DataHandlingError:
             raise
+        except KeyError as exc:
+            raise _missing_io_key_error(domain_name, domain_cfg, exc) from exc
         except Exception as exc:
             msg = "Domain execution failed"
             raise DomainExecutionError(domain=domain_name, message=msg) from exc
@@ -131,6 +145,9 @@ def _execute_domain(domain_name: str, domain_cfg: DomainConfig) -> None:
         logger.info("Completed domain")
     except (DomainNotFoundError, DomainInterfaceError) as exc:
         logger.error(f"Domain setup error: {exc}")
+    except KeyError as exc:
+        err = _missing_io_key_error(domain_name, domain_cfg, exc)
+        logger.error(f"Data handling error: {err}")
     except DataHandlingError as exc:
         logger.error(f"Data handling error: {exc}", exc_info=True)
     except Exception as exc:

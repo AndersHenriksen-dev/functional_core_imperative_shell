@@ -71,6 +71,22 @@ class DomainExecutionError(DomainError):
 
 
 @dataclass
+class MissingIOKeyError(DataHandlingError):
+    """Raised when a domain references an unknown input/output key."""
+
+    domain: str
+    key: str
+    available_inputs: list[str]
+    available_outputs: list[str]
+
+    def __str__(self) -> str:
+        """Return a readable error message."""
+        inputs = ", ".join(self.available_inputs) if self.available_inputs else "none"
+        outputs = ", ".join(self.available_outputs) if self.available_outputs else "none"
+        return f"{self.domain}: unknown IO key '{self.key}'. Inputs: {inputs}. Outputs: {outputs}."
+
+
+@dataclass
 class IOBaseError(DataHandlingError):
     """Base exception for IO failures."""
 
