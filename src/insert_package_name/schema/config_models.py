@@ -333,8 +333,7 @@ class GlobalConfigModel(BaseModel):
             invalid_list = ", ".join(invalid)
             available_list = ", ".join(sorted(available)) if available else "none"
             raise ValueError(
-                f"active_domains references unknown domains: {invalid_list}. "
-                f"Available domains: {available_list}."
+                f"active_domains references unknown domains: {invalid_list}. Available domains: {available_list}."
             )
         return self
 
