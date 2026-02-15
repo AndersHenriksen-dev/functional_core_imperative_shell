@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Hydra Debugger",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "env": {
+                "HYDRA_FULL_ERROR": "1"
+            },
+            "args": [
+                // You can add hydra overrides here if needed
+                // "run_list=['finance_forecast']"
+            ]
+        }
+    ]
+}
