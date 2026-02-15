@@ -41,12 +41,12 @@ def run(ctx: click.Context, domain: tuple[str, ...], dry_run: bool) -> None:
             click.echo("Would run all domains (dry run not yet implemented)")
             return
 
-        if domain:
-            click.echo(f"Running specific domains: {', '.join(domain)} (not yet implemented)")
-            return
-
         # Run the main module
         cmd = [sys.executable, "-m", "insert_package_name.main"]
+        if domain:
+            # Use Hydra's list syntax: run_domains=[domain1,domain2]
+            domains_str = ",".join(f'"{d}"' for d in domain)
+            cmd.append(f"run_domains=[{domains_str}]")
         result = subprocess.run(cmd, cwd=Path.cwd())
         sys.exit(result.returncode)
 
@@ -112,13 +112,30 @@ def validate(ctx: click.Context) -> None:
 @click.argument("domain_name")
 @click.option("--target-dir", default=".", help="Target directory for the domain")
 @click.option("--config-dir", default=None, help="Config directory to update")
-def create_domain(domain_name: str, target_dir: str, config_dir: str | None) -> None:
+@click.pass_context
+def create_domain(ctx: click.Context, domain_name: str, target_dir: str, config_dir: str | None) -> None:
     """Create a new domain with template files."""
     try:
-        config_path = config_dir or get_config_directory()
+        config_path = config_dir or ctx.obj["config_path"]
         create_domain_impl(domain_name, target_dir, config_path)
     except Exception as e:
         click.echo(f"Error: {e}", err=True)
+        sys.exit(1)
+
+
+@cli.command()
+@click.option("--host", default="127.0.0.1", help="Host to bind the GUI server to")
+@click.option("--port", default=5000, type=int, help="Port to bind the GUI server to")
+@click.option("--debug", is_flag=True, help="Run in debug mode")
+def gui(host: str, port: int, debug: bool) -> None:
+    """Launch the web GUI for pipeline configuration and execution."""
+    try:
+        from insert_package_name.gui import run_gui
+        click.echo(f"Starting GUI server on http://{host}:{port}")
+        click.echo("Press Ctrl+C to stop the server")
+        run_gui(host=host, port=port, debug=debug)
+    except Exception as e:
+        click.echo(f"Error starting GUI: {e}", err=True)
         sys.exit(1)
 
 

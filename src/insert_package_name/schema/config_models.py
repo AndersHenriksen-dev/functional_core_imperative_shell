@@ -310,6 +310,8 @@ class GlobalConfigModel(BaseModel):
     active_domains: list[str] = Field(default_factory=list)
     active_tags: list[TagType] = Field(default_factory=list)
     domains: dict[str, DomainConfigModel] = Field(default_factory=dict)
+    domains_to_run: list[str] = Field(default_factory=list)
+    run_domains: list[str] | None = Field(default=None)
 
     @model_validator(mode="after")
     def resolve_domain_inputs(self) -> GlobalConfigModel:
@@ -354,4 +356,6 @@ class GlobalConfigModel(BaseModel):
             active_domains=list(self.active_domains),
             active_tags=list(self.active_tags),
             domains={key: value.to_dataclass() for key, value in self.domains.items()},
+            domains_to_run=list(self.domains_to_run),
+            run_domains=list(self.run_domains) if self.run_domains else None,
         )

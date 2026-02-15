@@ -112,3 +112,5 @@ class GlobalConfig:
     active_domains: list[str] = field(default_factory=list)
     active_tags: list[TagType] = field(default_factory=list)
     domains: dict[str, DomainConfig] = field(default_factory=dict)
+    domains_to_run: list[str] = field(default_factory=list)
+    run_domains: list[str] | None = field(default=None)

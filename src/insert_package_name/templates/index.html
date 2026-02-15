@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Pipeline GUI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .status-running { color: #ffc107; }
+        .status-completed { color: #28a745; }
+        .status-failed { color: #dc3545; }
+        .status-error { color: #dc3545; }
+        .log-container {
+            max-height: 400px;
+            overflow-y: auto;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 0.375rem;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+        }
+        .domain-card {
+            transition: transform 0.2s;
+        }
+        .domain-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-cogs"></i> Data Pipeline Control Center
+            </a>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Configuration Section -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-cog"></i> Configuration</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="config-info">
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            Loading configuration...
+                        </div>
+                        <button class="btn btn-outline-primary btn-sm mt-2" onclick="validateConfig()">
+                            <i class="fas fa-check-circle"></i> Validate Configuration
+                        </button>
+                        <span id="validation-result" class="ms-2"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Domains Section -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-th-large"></i> Available Domains</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="domains-list">
+                            <div class="spinner-border spinner-border-sm" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            Loading domains...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Run Control Section -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0"><i class="fas fa-play-circle"></i> Pipeline Execution</h5>
+                        <button class="btn btn-success btn-sm" onclick="startRun()">
+                            <i class="fas fa-play"></i> Start Pipeline
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Select Domains to Run:</h6>
+                                <div id="domain-selection">
+                                    <div class="spinner-border spinner-border-sm" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    Loading domains...
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Current Run Status:</h6>
+                                <div id="run-status">
+                                    <span class="text-muted">No active run</span>
+                                </div>
+                                <div id="run-controls" class="mt-2" style="display: none;">
+                                    <button class="btn btn-danger btn-sm" onclick="stopRun()">
+                                        <i class="fas fa-stop"></i> Stop Run
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logs Section -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-terminal"></i> Execution Logs</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="logs-container" class="log-container">
+                            <div class="text-muted">No logs available. Start a pipeline run to see logs here.</div>
+                        </div>
+                        <button class="btn btn-outline-secondary btn-sm mt-2" onclick="clearLogs()">
+                            <i class="fas fa-trash"></i> Clear Logs
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let currentRunId = null;
+        let statusCheckInterval = null;
+        let availableDomains = [];
+
+        // Load initial data
+        document.addEventListener('DOMContentLoaded', function() {
+            loadConfig();
+            loadDomains();
+        });
+
+        function loadConfig() {
+            fetch('/api/config')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        document.getElementById('config-info').innerHTML =
+                            '<div class="alert alert-danger">Error loading configuration: ' + data.error + '</div>';
+                    } else {
+                        document.getElementById('config-info').innerHTML =
+                            '<strong>Config Path:</strong> ' + data.config_path + '<br>' +
+                            '<strong>Environment:</strong> ' + data.environment;
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('config-info').innerHTML =
+                        '<div class="alert alert-danger">Error loading configuration: ' + error.message + '</div>';
+                });
+        }
+
+        function loadDomains() {
+            fetch('/api/domains')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        document.getElementById('domains-list').innerHTML =
+                            '<div class="alert alert-danger">Error loading domains: ' + data.error + '</div>';
+                        document.getElementById('domain-selection').innerHTML =
+                            '<div class="alert alert-danger">Error loading domains: ' + data.error + '</div>';
+                    } else {
+                        availableDomains = data.domains;
+                        displayDomains(data.domains);
+                        displayDomainSelection(data.domains);
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('domains-list').innerHTML =
+                        '<div class="alert alert-danger">Error loading domains: ' + error.message + '</div>';
+                    document.getElementById('domain-selection').innerHTML =
+                        '<div class="alert alert-danger">Error loading domains: ' + error.message + '</div>';
+                });
+        }
+
+        function displayDomains(domains) {
+            if (domains.length === 0) {
+                document.getElementById('domains-list').innerHTML =
+                    '<div class="alert alert-info">No domains found. Use the CLI to create domains first.</div>';
+                return;
+            }
+
+            let html = '<div class="row">';
+            domains.forEach(domain => {
+                html += `
+                    <div class="col-md-4 mb-3">
+                        <div class="card domain-card h-100">
+                            <div class="card-body">
+                                <h6 class="card-title">
+                                    <i class="fas fa-cube"></i> ${domain}
+                                </h6>
+                                <p class="card-text text-muted small">
+                                    Data processing domain for ${domain.replace('_', ' ')}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            document.getElementById('domains-list').innerHTML = html;
+        }
+
+        function displayDomainSelection(domains) {
+            if (domains.length === 0) {
+                document.getElementById('domain-selection').innerHTML =
+                    '<div class="alert alert-info">No domains available.</div>';
+                return;
+            }
+
+            let html = '<div class="mb-2"><small class="text-muted">Select domains to include in the run:</small></div>';
+            domains.forEach(domain => {
+                html += `
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="${domain}" id="domain-${domain}" checked>
+                        <label class="form-check-label" for="domain-${domain}">
+                            ${domain.replace('_', ' ')}
+                        </label>
+                    </div>
+                `;
+            });
+            document.getElementById('domain-selection').innerHTML = html;
+        }
+
+        function validateConfig() {
+            document.getElementById('validation-result').innerHTML =
+                '<div class="spinner-border spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span></div> Validating...';
+
+            fetch('/api/validate')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.valid) {
+                        document.getElementById('validation-result').innerHTML =
+                            '<span class="text-success"><i class="fas fa-check-circle"></i> Configuration is valid</span>';
+                    } else {
+                        document.getElementById('validation-result').innerHTML =
+                            '<span class="text-danger"><i class="fas fa-exclamation-triangle"></i> Configuration invalid: ' + (data.error || 'Unknown error') + '</span>';
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('validation-result').innerHTML =
+                        '<span class="text-danger"><i class="fas fa-exclamation-triangle"></i> Validation failed: ' + error.message + '</span>';
+                });
+        }
+
+        function startRun() {
+            const selectedDomains = Array.from(document.querySelectorAll('#domain-selection input:checked'))
+                .map(checkbox => checkbox.value);
+
+            if (selectedDomains.length === 0) {
+                alert('Please select at least one domain to run.');
+                return;
+            }
+
+            document.getElementById('run-status').innerHTML =
+                '<div class="spinner-border spinner-border-sm" role="status"><span class="visually-hidden">Loading...</span></div> Starting pipeline...';
+
+            fetch('/api/run', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ domains: selectedDomains })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    document.getElementById('run-status').innerHTML =
+                        '<span class="text-danger">Error: ' + data.error + '</span>';
+                } else {
+                    currentRunId = data.run_id;
+                    document.getElementById('run-status').innerHTML =
+                        '<span class="status-running"><i class="fas fa-cog fa-spin"></i> Running (ID: ' + currentRunId + ')</span>';
+                    document.getElementById('run-controls').style.display = 'block';
+                    startStatusChecking();
+                }
+            })
+            .catch(error => {
+                document.getElementById('run-status').innerHTML =
+                    '<span class="text-danger">Error starting run: ' + error.message + '</span>';
+            });
+        }
+
+        function stopRun() {
+            if (!currentRunId) return;
+
+            fetch('/api/run/' + currentRunId + '/stop', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.stopped) {
+                        document.getElementById('run-status').innerHTML =
+                            '<span class="text-warning">Stopping run...</span>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error stopping run:', error);
+                });
+        }
+
+        function startStatusChecking() {
+            if (statusCheckInterval) {
+                clearInterval(statusCheckInterval);
+            }
+
+            statusCheckInterval = setInterval(() => {
+                if (!currentRunId) return;
+
+                fetch('/api/run/' + currentRunId + '/status')
+                    .then(response => response.json())
+                    .then(data => {
+                        updateRunStatus(data);
+                        updateLogs(data.logs);
+
+                        if (!data.is_running && (data.status === 'completed' || data.status.startsWith('failed') || data.status.startsWith('error'))) {
+                            clearInterval(statusCheckInterval);
+                            document.getElementById('run-controls').style.display = 'none';
+                            currentRunId = null;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error checking status:', error);
+                    });
+            }, 1000);
+        }
+
+        function updateRunStatus(data) {
+            let statusHtml = '';
+            let statusClass = '';
+
+            if (data.status === 'running') {
+                statusHtml = '<i class="fas fa-cog fa-spin"></i> Running';
+                statusClass = 'status-running';
+            } else if (data.status === 'completed') {
+                statusHtml = '<i class="fas fa-check-circle"></i> Completed';
+                statusClass = 'status-completed';
+            } else if (data.status.startsWith('failed')) {
+                statusHtml = '<i class="fas fa-exclamation-triangle"></i> ' + data.status;
+                statusClass = 'status-failed';
+            } else if (data.status.startsWith('error')) {
+                statusHtml = '<i class="fas fa-exclamation-triangle"></i> ' + data.status;
+                statusClass = 'status-error';
+            } else {
+                statusHtml = data.status;
+            }
+
+            document.getElementById('run-status').innerHTML =
+                '<span class="' + statusClass + '">' + statusHtml + '</span>';
+        }
+
+        function updateLogs(logs) {
+            const container = document.getElementById('logs-container');
+            if (logs && logs.length > 0) {
+                container.innerHTML = logs.map(log =>
+                    '<div>' + log.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</div>'
+                ).join('');
+                container.scrollTop = container.scrollHeight;
+            }
+        }
+
+        function clearLogs() {
+            document.getElementById('logs-container').innerHTML =
+                '<div class="text-muted">Logs cleared.</div>';
+        }
+    </script>
+</body>
+</html>

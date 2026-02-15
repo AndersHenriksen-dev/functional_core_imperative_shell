@@ -15,6 +15,7 @@ This package standardizes how data is read, validated, and written across domain
 - **Pydantic validation**: Clear error messages for configuration issues
 - **Automatic domain scheduling**: Run pipelines daily, weekly, or monthly with APScheduler
 - **User-friendly CLI**: Simple commands for common operations
+- **Web GUI**: Browser-based interface for non-technical users
 - **Domain templates**: Automated creation of new domains with boilerplate code
 - **Programmatic API**: Use the package as a library in your applications
 
@@ -65,6 +66,9 @@ python -m insert_package_name.cli config
 
 # Create a new domain
 python -m insert_package_name.cli create-domain my_new_domain
+
+# Launch the web GUI
+python -m insert_package_name.cli gui
 ```
 
 ### Programmatic API
@@ -105,6 +109,28 @@ is_valid = df.validate()
     python -m insert_package_name.main
     ```
 
+### Web GUI
+
+For users who prefer a graphical interface, launch the web-based GUI:
+
+```bash
+python -m insert_package_name.cli gui
+```
+
+This starts a web server at `http://127.0.0.1:5000` where you can:
+
+- **View available domains**: See all configured data processing domains
+- **Configure runs**: Select which domains to execute
+- **Monitor execution**: Watch real-time logs and status updates
+- **Validate configuration**: Check that your setup is correct before running
+- **Start/stop pipelines**: Control pipeline execution with simple buttons
+
+The GUI is perfect for:
+- Non-technical users who need to run pipelines
+- Quick configuration validation
+- Monitoring long-running processes
+- Learning the available domains and their purposes
+
 ### Legacy Usage
 
 For advanced usage with Hydra configuration overrides:
@@ -130,6 +156,7 @@ Options:
 Commands:
   config         Show current configuration.
   create-domain  Create a new domain with template files.
+  gui            Launch the web GUI for pipeline configuration and execution.
   list           List available domains.
   run            Run data pipelines.
   validate       Validate configuration without running.

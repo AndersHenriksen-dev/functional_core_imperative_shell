@@ -14,6 +14,9 @@ active_tags: []
 # If not specified, all domains from defaults will be loaded
 domains_to_run: []
 
+# Command-line override for domains (can be passed as run_domains=[domain1,domain2])
+run_domains: null
+
 # Base paths for all input/output files
 base_input_path: ${hydra:runtime.cwd}/data/silver
 base_output_path: ${hydra:runtime.cwd}/data/gold

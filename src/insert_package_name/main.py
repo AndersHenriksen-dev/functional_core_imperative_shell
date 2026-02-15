@@ -68,8 +68,13 @@ def main(cfg: DictConfig) -> None:
             logger = get_logger("orchestrator")
 
             # 2. Identify Domains
-            domains_to_load = schedule_cfg.get("domains_to_run") or list(schedule_cfg.get("domains", {}).keys())
-            logger.info(f"Attempting to load {len(domains_to_load)} domain(s)")
+            # Check if domains were specified via command line
+            if cfg.get("run_domains"):
+                domains_to_load = list(cfg.run_domains)
+                logger.info(f"Running specified domains: {domains_to_load}")
+            else:
+                domains_to_load = schedule_cfg.get("domains_to_run") or list(schedule_cfg.get("domains", {}).keys())
+                logger.info(f"Attempting to load {len(domains_to_load)} domain(s)")
 
             # 3. Load & Validate
             valid_configs, failed_domains = load_domain_configs(domains_to_load, cli_overrides, logger)
