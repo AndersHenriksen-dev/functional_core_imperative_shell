@@ -9,6 +9,14 @@ from typing import Any
 class DataHandlingError(Exception):
     """Base exception for insert_package_name errors."""
 
+    def __init_subclass__(cls) -> None:
+        """Hide module-qualified names in tracebacks for subclasses."""
+        super().__init_subclass__()
+        cls.__module__ = "builtins"
+
+
+DataHandlingError.__module__ = "builtins"
+
 
 @dataclass
 class ConfigValidationError(DataHandlingError):
