@@ -1,0 +1,76 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "ctrl+n",
+        "command": "explorer.newFile"
+    },
+    {
+        "key": "ctrl+shift+n",
+        "command": "-workbench.action.newWindow"
+    },
+    {
+        "key": "ctrl+shift+n",
+        "command": "explorer.newFolder"
+    },
+
+    {
+        "key": "ctrl+alt+enter",
+        "command": "python.execInTerminal"
+    },
+
+    {
+        "key": "ctrl+k",
+        "command": "workbench.action.terminal.clear",
+        "when": "terminalFocus"
+    },
+
+    // --- Run in debugger window ---
+    {
+        "key": "shift+alt+d",
+        "command": "editor.debug.action.selectionToRepl"
+    },
+
+    // --- Go to definition ---
+    {
+        "key": "shift+alt+s",
+        "command": "editor.action.revealDefinition",
+        "when": "editorHasDefinitionProvider && editorTextFocus"
+    },
+
+    // --- Toggle between terminal and not-terminal focus` ---
+    {
+        "key": "ctrl+alt+u",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+alt+u",
+        "command": "workbench.action.terminal.focus",
+        "when": "!terminalFocus"
+    },
+
+    // -------------------------------------------------------
+    // --- Focus the changes view in vscode source control ---
+    {
+        "key": "ctrl+g c",
+        "command": "workbench.scm.focus"
+    },
+
+    {
+        "key": "f12",
+        "command": "-editor.action.revealDefinition",
+        "when": "editorHasDefinitionProvider && editorTextFocus"
+    },
+
+    {
+    "key": "ctrl+alt+t",
+    "command": "workbench.action.terminal.runSelectedText",
+    "when": "editorHasSelection"
+    },
+
+    {
+        "key": "ctrl+alt+r", // Choose your preferred shortcut
+        "command": "workbench.action.tasks.runTask",
+        "args": "Python: Run current file as module"
+    }
+]
