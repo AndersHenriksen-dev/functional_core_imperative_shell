@@ -19,7 +19,7 @@ from insert_package_name.schema.types import LoggingConfig
 @click.option("--verbose", "-v", is_flag=True, help="Enable verbose logging")
 @click.pass_context
 def cli(ctx: click.Context, config_path: str | None, verbose: bool) -> None:
-    """Data pipeline orchestration tool."""
+    """Implement data pipeline orchestration tool."""
     ctx.ensure_object(dict)
     ctx.obj["config_path"] = config_path or get_config_directory()
     ctx.obj["verbose"] = verbose
@@ -47,7 +47,7 @@ def run(ctx: click.Context, domain: tuple[str, ...], dry_run: bool) -> None:
 
         # Run the main module
         cmd = [sys.executable, "-m", "insert_package_name.main"]
-        result = subprocess.run(cmd, cwd=Path.cwd())
+        result = subprocess.run(cmd, cwd=Path.cwd())  # noqa: S603
         sys.exit(result.returncode)
 
     except Exception as e:
@@ -98,7 +98,7 @@ def validate(ctx: click.Context) -> None:
             "-c",
             "from insert_package_name.main import get_config_directory; print('Config path:', get_config_directory())",
         ]
-        result = subprocess.run(cmd, cwd=Path.cwd(), capture_output=True, text=True)
+        result = subprocess.run(cmd, cwd=Path.cwd(), capture_output=True, text=True)  # noqa: S603
 
         if result.returncode == 0:
             click.echo("[OK] Configuration appears valid")

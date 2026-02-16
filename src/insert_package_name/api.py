@@ -80,7 +80,7 @@ class DataFlow:
         """
         # Run via subprocess to avoid complex config loading
         cmd = [sys.executable, "-m", "insert_package_name.main"]
-        result = subprocess.run(cmd, cwd=Path.cwd(), check=True)
+        _ = subprocess.run(cmd, cwd=Path.cwd(), check=True)  # noqa: S603
 
     def validate(self) -> bool:
         """Validate configuration.

@@ -848,6 +848,7 @@ version = "0.0.1"
 source = { editable = "." }
 dependencies = [
     { name = "apscheduler" },
+    { name = "click" },
     { name = "fsspec" },
     { name = "hydra-core" },
     { name = "invoke" },
@@ -887,6 +888,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "apscheduler", specifier = ">=3.10" },
+    { name = "click", specifier = ">=8.0" },
     { name = "fsspec", specifier = ">=2024.10" },
     { name = "hydra-core" },
     { name = "invoke" },

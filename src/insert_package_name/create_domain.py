@@ -246,7 +246,3 @@ def create_domain_impl(domain_name: str, target_dir: str, config_dir: str | None
 def create_domain(domain_name: str, target_dir: str, config_dir: str | None) -> None:
     """Create a new domain with template files."""
     create_domain_impl(domain_name, target_dir, config_dir)
-
-
-if __name__ == "__main__":
-    create_domain_cli()

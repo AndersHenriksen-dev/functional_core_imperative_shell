@@ -54,7 +54,7 @@ class TestDataFlow:
         df.run()
 
         mock_subprocess.assert_called_once()
-        args, kwargs = mock_subprocess.call_args
+        args, _ = mock_subprocess.call_args
         assert args[0][0] == sys.executable  # sys.executable
         assert "-m" in args[0]
         assert "insert_package_name.main" in args[0]

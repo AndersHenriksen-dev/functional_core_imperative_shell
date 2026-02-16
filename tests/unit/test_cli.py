@@ -46,7 +46,7 @@ class TestCLI:
         mock_subprocess.return_value.returncode = 0
         with pytest.raises(SystemExit):
             cli(["run"])
-        captured = capsys.readouterr()
+        _ = capsys.readouterr()
         # Should not output anything on success
         mock_subprocess.assert_called_once()
 
@@ -62,9 +62,10 @@ class TestCLI:
     def test_cli_create_domain_command(self, tmp_path, capsys):
         """Test the create-domain command."""
         # Change to tmp_path for testing
-        with patch("insert_package_name.cli.get_config_directory", return_value=str(tmp_path)):
-            with pytest.raises(SystemExit):
-                cli(["create-domain", "test_domain", "--target-dir", str(tmp_path)])
+        with patch("insert_package_name.cli.get_config_directory", return_value=str(tmp_path)) and pytest.raises(
+            SystemExit
+        ):
+            cli(["create-domain", "test_domain", "--target-dir", str(tmp_path)])
 
         captured = capsys.readouterr()
         assert "Creating domain 'test_domain'..." in captured.out
